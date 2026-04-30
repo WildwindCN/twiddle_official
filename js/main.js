@@ -5,7 +5,7 @@ const translations = {
     en: {
         'nav-release': 'Release',
         'nav-about': 'About',
-        'hero-pretitle': 'TWIDDLE AI PRESENTS',
+        'hero-pretitle': '',
         'hero-subtitle': "World's First Hardware Synthesizer with Natural Language Timbre Generation",
         'prototype-title': 'Twiddle SEED',
         'prototype-desc': "Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by Twiddle AI's self-developed Inspiration Engine 1.0, it bridges the gap between natural language input and sound — turning natural language input into playable timbres through an integrated display and responsive MIDI keyboard.",
@@ -41,7 +41,7 @@ const translations = {
     zh: {
         'nav-release': '发布日期',
         'nav-about': '关于我们',
-        'hero-pretitle': 'TWIDDLE AI 出品',
+        'hero-pretitle': '',
         'hero-subtitle': '全球首台支持自然语言音色生成的硬件合成器',
         'prototype-title': 'Twiddle SEED',
         'prototype-desc': 'Twiddle SEED 是全球首台支持自然语言音色生成的硬件合成器。作为 Twiddle AI 自研 Inspiration Engine 1.0 的首款原型机，它架起了自然语言输入与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将自然语言输入转化为可演奏的音色。',
