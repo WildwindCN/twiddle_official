@@ -690,3 +690,25 @@ footer {
 @media (prefers-reduced-motion: reduce) {
     .term-quote::after { animation: none; opacity: 0.8; }
 }
+
+/* ====== About: contact email line ====== */
+.about-contact {
+    margin-top: 1.25rem;
+    font-size: 1rem;
+    color: var(--color-text-secondary, #aaa);
+    line-height: 1.7;
+}
+.about-contact-email {
+    display: inline-block;
+    margin-left: 0.4em;
+    font-family: 'Space Mono', ui-monospace, Menlo, Consolas, monospace;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    transition: border-color 0.25s ease, color 0.25s ease;
+}
+.about-contact-email:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}

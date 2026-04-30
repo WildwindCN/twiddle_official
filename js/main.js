@@ -36,6 +36,7 @@ const translations = {
         'wechat-channel': 'Video Channel',
         'wechat-official': 'Official Account',
         'footer-tagline': "World's First Hardware Synthesizer with Natural Language Timbre Generation : Twiddle SEED",
+        'contact-intro': 'For business inquiries and collaboration, feel free to reach us at',
     },
     zh: {
         'nav-release': '发布日期',
@@ -71,6 +72,7 @@ const translations = {
         'wechat-channel': '视频号',
         'wechat-official': '公众号',
         'footer-tagline': '全球首台支持自然语言音色生成的硬件合成器 : Twiddle SEED',
+        'contact-intro': '商业合作与咨询，欢迎致函',
     }
 };
 
