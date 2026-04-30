@@ -168,7 +168,7 @@ const heroScrollTl = gsap.timeline({
     scrollTrigger: {
         trigger: '.hero',
         start: 'top top',
-        end: '+=300%',
+        end: '+=200%', // 原 300%:黑屏后仍要滚太久才到 Twiddle SEED,缩短 pin 距离
         pin: true,
         scrub: 1,
         onUpdate: (self) => {
@@ -196,8 +196,8 @@ heroScrollTl
     .fromTo('.hero-title', { opacity: 1, y: 0 }, { opacity: 0, y: -50, ease: 'none' }, 0.15)
     .fromTo('.hero-dark-overlay',
         { opacity: 0 },
-        { opacity: 1, ease: 'none' },
-        0.75
+        { opacity: 1, ease: 'none', duration: 0.25 },
+        0.55 // 原 0.75:让全黑更早完成,尾部不再长时间停留在纯黑
     );
 
 // ====== Prototype -> Engine transition (single pinned overlay) ======
