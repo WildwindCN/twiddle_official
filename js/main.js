@@ -326,7 +326,7 @@ prototypeTl
             const r = await fetch('/api/waitlist', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ contact: sanitize(raw) }),
+                body: JSON.stringify({ contact: sanitize(raw), lang: currentLang }),
             });
             let data = {};
             try { data = await r.json(); } catch { /* ignore */ }
