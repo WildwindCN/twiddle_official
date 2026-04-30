@@ -1,108 +1,131 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>数字存储测试</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      max-width: 520px;
-      margin: 60px auto;
-      padding: 0 20px;
-      color: #222;
-    }
-    h1 { font-size: 22px; }
-    .row { display: flex; gap: 8px; margin: 16px 0; }
-    input[type=number] {
-      flex: 1;
-      padding: 10px 12px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      padding: 10px 18px;
-      font-size: 16px;
-      border: 0;
-      border-radius: 6px;
-      background: #f38020;
-      color: #fff;
-      cursor: pointer;
-    }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
-    #msg { min-height: 1.4em; color: #555; font-size: 14px; }
-    ul { padding-left: 18px; }
-    li { margin: 4px 0; font-family: ui-monospace, monospace; }
-    .muted { color: #888; font-size: 13px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwiddleSEED — World's First Hardware Synthesizer with Natural Language Timbre Control</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>数字存储测试（Cloudflare Pages + KV）</h1>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="images/logo_v2_trans_black.png" alt="TwiddleAI" class="logo-black">
+            <img src="images/logo_v2_trans_white.png" alt="TwiddleAI" class="logo-white">
+        </div>
+        <div class="nav-links">
+            <a href="#prototype">TwiddleSEED</a>
+            <a href="#engine">InspirationEngine 1.0</a>
+            <a href="#release" data-i18n="nav-release">Release</a>
+            <a href="#about" data-i18n="nav-about">About</a>
+        </div>
+        <button class="lang-switch" id="langSwitch" aria-label="Switch Language">中</button>
+    </nav>
 
-  <div class="row">
-    <input id="num" type="number" placeholder="输入一个数字" />
-    <button id="save">保存</button>
-  </div>
-  <div id="msg"></div>
+    <section class="hero" id="hero">
+        <div class="hero-dark-overlay"></div>
+        <div class="hero-pretitle" data-i18n="hero-pretitle">TWIDDLE-AI PRESENTS</div>
+        <div class="hero-product-wrapper">
+            <div class="hero-product-glow"></div>
+            <img src="images/seed_new.png" alt="TwiddleSEED" class="hero-product">
+        </div>
+        <div class="hero-title">
+            <h1>TwiddleSEED</h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">World's First Hardware Synthesizer with Natural Language Timbre Control</p>
+        </div>
+    </section>
 
-  <h3>最近 20 条记录 <button id="refresh" style="background:#555;font-size:13px;padding:4px 10px;">刷新</button></h3>
-  <ul id="list"><li class="muted">加载中…</li></ul>
+    <section class="section prototype" id="prototype">
+        <div class="container">
+            <span class="section-label">01 / TwiddleSEED</span>
+            <h2 data-i18n="prototype-title">Prototype</h2>
+            <p class="section-desc" data-i18n="prototype-desc">TwiddleSEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by TwiddleAI's self-developed InspirationEngine 1.0, it bridges the gap between words and sound — turning text into playable timbres through an integrated display and responsive MIDI keyboard.</p>
+            <img src="images/seed_ui.png" alt="TwiddleSEED with UI" class="prototype-img">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4 data-i18n="feature-allinone">Natural Language Timbre Control</h4>
+                    <p data-i18n="feature-allinone-desc">Describe any sound in words and hear it instantly. From technical specifications to poetic metaphors, your language becomes your instrument.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="feature-feedback">Integrated Display &amp; Keyboard</h4>
+                    <p data-i18n="feature-feedback-desc">A high-resolution screen meets a responsive MIDI keyboard, giving you direct visual and tactile control over every parameter.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="feature-portable">Portable Creative Hub</h4>
+                    <p data-i18n="feature-portable-desc">A compact, all-in-one form factor designed for studios, stages, and everywhere inspiration strikes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-const $ = (id) => document.getElementById(id);
+    <section class="section engine" id="engine">
+        <div class="container split">
+            <div class="split-left">
+                <span class="section-label">02 / InspirationEngine 1.0</span>
+                <h2 data-i18n="engine-title">InspirationEngine 1.0</h2>
+                <p class="section-desc" data-i18n="engine-desc">Built on a Transformer architecture, InspirationEngine 1.0 is TwiddleAI's end-to-end natural language-to-timbre synthesis algorithm. It translates text into playable sound — from precise professional descriptors like "a bright, gritty, spacious vintage piano" to the poetic inspiration of "I wandered lonely as a cloud / That floats on high o'er vales and hills." This is not preset browsing. It is timbre creation born from language.</p>
+                <div class="feature-grid compact">
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-context">End-to-End Transformer</h4>
+                        <p data-i18n="feature-context-desc">A self-developed neural network that understands both technical sound-design vocabulary and the emotional nuance of free-form language.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-style">Dual-Mode Language Understanding</h4>
+                        <p data-i18n="feature-style-desc">Handles rigorous professional descriptors and open-ended creative metaphors with equal fluency, capturing both precision and inspiration.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-collab">Real-Time Timbre Synthesis</h4>
+                        <p data-i18n="feature-collab-desc">Generate expressive, playable timbres instantaneously. No sampling libraries. No parameter knobs. Just words, transformed into sound.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-voice">Voice-Guided Incremental Editing</h4>
+                        <p data-i18n="feature-voice-desc">Tell TwiddleSEED "make it brighter" or "add more warmth" — the algorithm interprets your voice and refines the timbre in real time, one instruction at a time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="split-right">
+                <img src="images/seed_ui.png" alt="TwiddleSEED UI" class="split-product">
+            </div>
+        </div>
+    </section>
 
-async function save() {
-  const v = $('num').value;
-  if (v === '') { $('msg').textContent = '请先输入数字'; return; }
-  $('save').disabled = true;
-  $('msg').textContent = '保存中…';
-  try {
-    const r = await fetch('/api/numbers', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ value: Number(v) }),
-    });
-    const text = await r.text();
-    let data = {};
-    try { data = text ? JSON.parse(text) : {}; }
-    catch { throw new Error(`HTTP ${r.status} 非 JSON 响应：${text.slice(0, 200) || '(空)'}`); }
-    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    $('msg').textContent = `已保存 id=${data.id}, value=${data.value}`;
-    $('num').value = '';
-    load();
-  } catch (e) {
-    $('msg').textContent = '错误：' + e.message;
-  } finally {
-    $('save').disabled = false;
-  }
-}
+    <section class="section release" id="release">
+        <div class="container centered">
+            <span class="section-label">03 / Coming Soon</span>
+            <h2 class="release-date">2027</h2>
+            <p class="section-desc" data-i18n="release-desc">TwiddleSEED is currently in prototype phase. The product form you see here does not represent the final design — we are actively exploring new interaction paradigms to dissolve the boundary between human and music creation.<br>The official release is expected in 2027.<br>Join the waitlist to follow our journey.</p>
+            <div class="waitlist-form" id="waitlistForm">
+                <div class="waitlist-inputs">
+                    <input type="text" id="waitlistContact" class="waitlist-input" maxlength="128" placeholder="Email or Phone" autocomplete="off">
+                    <button type="button" id="waitlistSubmit" class="cta-button" data-i18n="cta-waitlist">Join Waitlist</button>
+                </div>
+                <div class="waitlist-msg" id="waitlistMsg"></div>
+            </div>
+        </div>
+    </section>
 
-async function load() {
-  try {
-    const r = await fetch('/api/numbers');
-    const text = await r.text();
-    let data = {};
-    try { data = text ? JSON.parse(text) : {}; }
-    catch { throw new Error(`HTTP ${r.status} 非 JSON 响应：${text.slice(0, 200) || '(空)'}`); }
-    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-    const ul = $('list');
-    if (!data.items || data.items.length === 0) {
-      ul.innerHTML = '<li class="muted">（暂无记录）</li>';
-      return;
-    }
-    ul.innerHTML = data.items.map(it =>
-      `<li>${new Date(it.ts).toLocaleString()} — <b>${it.value}</b></li>`
-    ).join('');
-  } catch (e) {
-    $('list').innerHTML = `<li class="muted">加载失败：${e.message}</li>`;
-  }
-}
+    <section class="section about" id="about">
+        <div class="container">
+            <span class="section-label">04 / About</span>
+            <h2 data-i18n="about-title">About TwiddleAI</h2>
+            <p class="section-desc" data-i18n="about-desc">TwiddleAI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed InspirationEngine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. TwiddleSEED is the physical embodiment of this vision: the world's first hardware synthesizer that lets you shape sound with nothing but words.</p>
+            <div class="social-links">
+                <a href="#">Twitter / X</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+                <a href="#" data-i18n="contact">Contact</a>
+            </div>
+        </div>
+    </section>
 
-$('save').addEventListener('click', save);
-$('refresh').addEventListener('click', load);
-$('num').addEventListener('keydown', (e) => { if (e.key === 'Enter') save(); });
-load();
-</script>
+    <footer>
+        <p>Designed with passion. TwiddleAI 2027.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
