@@ -6,10 +6,10 @@ const translations = {
         'nav-release': 'Release',
         'nav-about': 'About',
         'hero-pretitle': 'TWIDDLE AI PRESENTS',
-        'hero-subtitle': "World's First Hardware Synthesizer with Natural Language Timbre Control",
+        'hero-subtitle': "World's First Hardware Synthesizer with Natural Language Timbre Generation",
         'prototype-title': 'Twiddle SEED',
         'prototype-desc': "Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by Twiddle AI's self-developed Inspiration Engine 1.0, it bridges the gap between words and sound — turning text into playable timbres through an integrated display and responsive MIDI keyboard.",
-        'feature-allinone': 'Natural Language Timbre Control',
+        'feature-allinone': 'Natural Language Timbre Generation',
         'feature-allinone-desc': 'Describe any sound in words and hear it instantly. From technical specifications to poetic metaphors, your language becomes your instrument.',
         'feature-feedback': 'Integrated Display \u0026 Keyboard',
         'feature-feedback-desc': 'A high-resolution screen meets a responsive MIDI keyboard, giving you direct visual and tactile control over every parameter.',
@@ -35,10 +35,10 @@ const translations = {
         'nav-release': '发布日期',
         'nav-about': '关于我们',
         'hero-pretitle': 'TWIDDLE AI 出品',
-        'hero-subtitle': '全球首台支持自然语言音色控制的硬件合成器',
+        'hero-subtitle': '全球首台支持自然语言音色生成的硬件合成器',
         'prototype-title': 'Twiddle SEED',
-        'prototype-desc': 'Twiddle SEED 是全球首台支持自然语言音色控制的硬件合成器。作为 Twiddle AI 自研 Inspiration Engine 1.0 的首款原型机，它架起了文字与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将文本转化为可演奏的音色。',
-        'feature-allinone': '自然语言音色控制',
+        'prototype-desc': 'Twiddle SEED 是全球首台支持自然语言音色生成的硬件合成器。作为 Twiddle AI 自研 Inspiration Engine 1.0 的首款原型机，它架起了文字与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将文本转化为可演奏的音色。',
+        'feature-allinone': '自然语言音色生成',
         'feature-allinone-desc': '用文字描述任意声音，即刻听见。从技术参数到诗意隐喻，你的语言就是你的乐器。',
         'feature-feedback': '集成显示屏与键盘',
         'feature-feedback-desc': '高分辨率屏幕配合响应式 MIDI 键盘，为每个参数提供直观的视觉与触觉控制。',
@@ -145,8 +145,9 @@ heroScrollTl
         { opacity: 0.6, scale: 2.5, ease: 'none' },
         0
     )
-    .to('.hero-pretitle', { opacity: 0, y: -30, ease: 'none' }, 0.1)
-    .to('.hero-title', { opacity: 0, y: -50, ease: 'none' }, 0.15)
+    // 用 fromTo 明确起始值,避免 scrub 反向时因入场动画未完成导致"回去没文字"
+    .fromTo('.hero-pretitle', { opacity: 1, y: 0 }, { opacity: 0, y: -30, ease: 'none' }, 0.1)
+    .fromTo('.hero-title', { opacity: 1, y: 0 }, { opacity: 0, y: -50, ease: 'none' }, 0.15)
     .fromTo('.hero-dark-overlay',
         { opacity: 0 },
         { opacity: 1, ease: 'none' },
@@ -187,7 +188,7 @@ const prototypeScrollDistance = () => {
     return Math.max(0, prototypeContainer.scrollHeight - window.innerHeight + window.innerHeight * 0.15);
 };
 
-gsap.timeline({
+const prototypeTl = gsap.timeline({
     scrollTrigger: {
         trigger: '#prototype',
         start: 'top top',
@@ -196,7 +197,8 @@ gsap.timeline({
         scrub: true,
         invalidateOnRefresh: true,
     }
-})
+});
+prototypeTl
 // Phase A (0 → 1.5): 垂直推进,把所有 feature 依次滚入视口
 .to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1.5 }, 0)
 // Phase A.5: 停顿 0.3 让用户看清最后一屏 feature
@@ -316,3 +318,31 @@ gsap.utils.toArray('.section').forEach((section) => {
         }
     });
 });
+
+// ====== Nav anchor fix: #engine lives inside pinned #prototype section ======
+// 真实的 #engine 节点被设置成 height:0,浏览器原生锚点跳会定位错,
+// 这里拦截 nav 点击,改用 ScrollTrigger 提供的 start/end 计算目标滚动位置。
+(function () {
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#engine') {
+                e.preventDefault();
+                const st = prototypeTl.scrollTrigger;
+                if (!st) return;
+                // engine overlay 在时间轴 progress ≈ 2.2 / (timeline total) 附近完全淡入
+                // 这里跳到 pin 段 85% 处,让用户直接看到 engine 内容
+                const target = st.start + (st.end - st.start) * 0.85;
+                window.scrollTo({ top: target, behavior: 'smooth' });
+            } else if (href === '#prototype') {
+                e.preventDefault();
+                const st = prototypeTl.scrollTrigger;
+                if (!st) return;
+                // 跳到 pin 起点(Phase A 开始)
+                window.scrollTo({ top: st.start, behavior: 'smooth' });
+            }
+            // #release / #about / #hero 等用浏览器默认行为,无需拦截
+        });
+    });
+})();
