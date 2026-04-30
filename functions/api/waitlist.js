@@ -267,8 +267,8 @@ export const onRequestPost = async (context) => {
       contact: rawContact,
       type: isEmail(rawContact) ? 'email' : 'phone',
       ts,
-      ip,
       geo,
+      // 注:不持久化原始 IP(隐私考虑);IP 仅用于请求内限流,不写入 entry
     };
 
     // Store both the entry and the dedup marker
