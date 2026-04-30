@@ -116,7 +116,7 @@ export const onRequestPost = async ({ request, env }) => {
     // Store both the entry and the dedup marker
     await Promise.all([
       env.WAITLIST.put(entryKey, JSON.stringify(entry)),
-      env.WAITLIST.put(dupKey, id, { expirationTtl: 0 }), // no expiration (or very long)
+      env.WAITLIST.put(dupKey, id), // no expiration: omit expirationTtl entirely (0 is invalid)
     ]);
 
     return json({ ok: true, id, contact: rawContact });
