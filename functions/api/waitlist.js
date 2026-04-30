@@ -133,7 +133,7 @@ www.twiddle-ai.com
 感谢你的关注、耐心与支持。
 请持续关注我们的最新进展。
 
-Twiddle Team
+Twiddle AI Team
 www.twiddle-ai.com
 `,
         html: () => `<!DOCTYPE html>
@@ -153,7 +153,7 @@ www.twiddle-ai.com
         <p style="margin:0 0 1em;">很高兴能在这个早期阶段与你相遇。</p>
         <p style="margin:0 0 1em;">未来,Twiddle SEED 的每一次重要进展,包括产品更新、测试机会、发布计划和体验资格,我们都会第一时间通过邮件与你分享。</p>
         <p style="margin:0 0 1em;">感谢你的关注、耐心与支持。<br>请持续关注我们的最新进展。</p>
-        <p style="margin:2em 0 0;">Twiddle Team<br><a href="${SITE_URL}" style="color:#0066cc;text-decoration:none;">www.twiddle-ai.com</a></p>
+        <p style="margin:2em 0 0;">Twiddle AI Team<br><a href="${SITE_URL}" style="color:#0066cc;text-decoration:none;">www.twiddle-ai.com</a></p>
       </td></tr>
     </table>
   </td></tr>
