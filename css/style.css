@@ -667,3 +667,26 @@ footer {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+/* ====== Terminal-style quote (bold + blinking block cursor) ====== */
+.term-quote {
+    font-weight: 700;
+    font-family: 'Space Mono', ui-monospace, Menlo, Consolas, monospace;
+    /* 光标紧跟引号末尾,放在 ::after 里 */
+}
+.term-quote::after {
+    content: '';
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.1em;
+    vertical-align: -0.1em;
+    background: currentColor;
+    animation: term-cursor-blink 1s steps(2, start) infinite;
+}
+@keyframes term-cursor-blink {
+    to { visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .term-quote::after { animation: none; opacity: 0.8; }
+}
