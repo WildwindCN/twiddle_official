@@ -794,7 +794,8 @@ html, body { overflow-x: hidden; }
     .navbar {
         padding: 0.9rem 1.25rem;
     }
-    .nav-logo img { height: 26px; }
+    .nav-logo { height: 44px; }
+    .nav-logo img { height: 44px; }
 
     /* Hero: 字号 & 间距 */
     .hero-pretitle {
