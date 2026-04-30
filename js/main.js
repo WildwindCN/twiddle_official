@@ -51,7 +51,7 @@ const translations = {
         'feature-portable': '便携式创作中心',
         'feature-portable-desc': '紧凑的一体化设计，适用于录音室、舞台，以及一切灵感迸发的场景。',
         'engine-title': 'Inspiration Engine 1.0',
-        'engine-desc': 'Inspiration Engine 1.0 基于 Transformer 架构，是 Twiddle AI 自研的端到端自然语言到音色合成算法。它将自然语言输入转化为可演奏的声音——既能解析精确的专业描述，如<strong>"明亮的有颗粒感的强空间感的老式钢琴"</strong>，也能捕捉诗意灵感，如<strong>"I wandered lonely as a cloud / That floats on high o\'er vales and hills"</strong>。这不是预设浏览，而是诞生于语言的音色创造。',
+        'engine-desc': 'Inspiration Engine 1.0 基于 Transformer 架构，是 Twiddle AI 自研的端到端自然语言到音色合成算法。它将自然语言输入转化为可演奏的声音——既能解析精确的专业描述，如<strong>"明亮的有颗粒感的强空间感的老式钢琴"</strong>，也能捕捉诗意灵感，如<strong>"众鸟高飞尽，孤云独去闲"</strong>。这不是预设浏览，而是诞生于语言的音色创造。',
         'feature-context': '端到端 Transformer',
         'feature-context-desc': '自研神经网络，既能理解专业声音设计词汇，也能捕捉自由语言中的情感细腻。',
         'feature-style': '双模式语言理解',
