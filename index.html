@@ -63,8 +63,11 @@ async function save() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ value: Number(v) }),
     });
-    const data = await r.json();
-    if (!r.ok) throw new Error(data.error || '保存失败');
+    const text = await r.text();
+    let data = {};
+    try { data = text ? JSON.parse(text) : {}; }
+    catch { throw new Error(`HTTP ${r.status} 非 JSON 响应：${text.slice(0, 200) || '(空)'}`); }
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
     $('msg').textContent = `已保存 id=${data.id}, value=${data.value}`;
     $('num').value = '';
     load();
@@ -78,7 +81,11 @@ async function save() {
 async function load() {
   try {
     const r = await fetch('/api/numbers');
-    const data = await r.json();
+    const text = await r.text();
+    let data = {};
+    try { data = text ? JSON.parse(text) : {}; }
+    catch { throw new Error(`HTTP ${r.status} 非 JSON 响应：${text.slice(0, 200) || '(空)'}`); }
+    if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
     const ul = $('list');
     if (!data.items || data.items.length === 0) {
       ul.innerHTML = '<li class="muted">（暂无记录）</li>';
