@@ -731,3 +731,36 @@ footer {
         width: 100%;
     }
 }
+
+/* ====== About: two-column layout (text | turnaround gif) ====== */
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+}
+.about-text {
+    min-width: 0;
+}
+.about-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+.about-visual-img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .about-visual-img {
+        max-width: 360px;
+    }
+}
