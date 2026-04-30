@@ -74,7 +74,7 @@ const translations = {
 
 let currentLang = 'en';
 
-function setLanguage(lang) {
+function setLanguage(lang, persist) {
     currentLang = lang;
     document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
 
@@ -93,14 +93,46 @@ function setLanguage(lang) {
 
     const btn = document.getElementById('langSwitch');
     if (btn) btn.textContent = lang === 'en' ? '中' : 'EN';
+
+    if (persist) {
+        try { localStorage.setItem('ts_lang', lang); } catch (_) {}
+    }
 }
 
 document.getElementById('langSwitch').addEventListener('click', () => {
-    setLanguage(currentLang === 'en' ? 'zh' : 'en');
+    setLanguage(currentLang === 'en' ? 'zh' : 'en', true); // 用户手动切换时持久化
 });
 
-// Initialize default language
-setLanguage('en');
+// Initial language detection
+// 优先级: localStorage 里的用户选择 > IP geo (/api/lang) > navigator.language > en
+(function detectInitialLang() {
+    // 先用 en 渲染一次,避免页面闪烁太久
+    setLanguage('en', false);
+
+    let saved = null;
+    try { saved = localStorage.getItem('ts_lang'); } catch (_) {}
+    if (saved === 'zh' || saved === 'en') {
+        setLanguage(saved, false);
+        return;
+    }
+
+    // 向后端询问 IP 归属地
+    fetch('/api/lang', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+            if (data && (data.lang === 'zh' || data.lang === 'en')) {
+                setLanguage(data.lang, false);
+            } else {
+                // 兜底: 浏览器语言
+                const nav = (navigator.language || '').toLowerCase();
+                setLanguage(nav.startsWith('zh') ? 'zh' : 'en', false);
+            }
+        })
+        .catch(() => {
+            const nav = (navigator.language || '').toLowerCase();
+            setLanguage(nav.startsWith('zh') ? 'zh' : 'en', false);
+        });
+})();
 
 // ====== Navbar ======
 const navbar = document.querySelector('.navbar');
