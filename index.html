@@ -112,13 +112,24 @@
             <h2 data-i18n="about-title">About Twiddle AI</h2>
             <p class="section-desc" data-i18n="about-desc">Twiddle AI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed Inspiration Engine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. Twiddle SEED is the physical embodiment of this vision: the world's first hardware synthesizer that lets you shape sound with nothing but words.</p>
             <div class="social-links">
-                <a href="#">Twitter / X</a>
-                <a href="#">Instagram</a>
-                <a href="#">GitHub</a>
-                <a href="#" data-i18n="contact">Contact</a>
+                <a href="#" target="_blank" rel="noopener" data-social="threads">Threads</a>
+                <a href="#" target="_blank" rel="noopener" data-social="instagram">Instagram</a>
+                <a href="#" target="_blank" rel="noopener" data-social="bilibili">Bilibili</a>
+                <a href="#" target="_blank" rel="noopener" data-social="xiaohongshu">小红书</a>
+                <a href="#" rel="noopener" data-social="wechat" id="wechatLink">微信</a>
             </div>
         </div>
     </section>
+
+    <div class="wechat-modal" id="wechatModal" hidden>
+        <div class="wechat-modal-backdrop" data-close></div>
+        <div class="wechat-modal-card">
+            <button class="wechat-modal-close" data-close aria-label="Close">&times;</button>
+            <img src="images/wechat-qr.png" alt="Twiddle AI WeChat QR" class="wechat-modal-qr"
+                 onerror="this.classList.add('missing'); this.alt='二维码待上传';">
+            <p class="wechat-modal-label">微信扫码关注 Twiddle AI</p>
+        </div>
+    </div>
 
     <footer>
         <p>Designed with passion. Twiddle AI 2027.</p>

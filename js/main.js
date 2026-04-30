@@ -209,6 +209,27 @@ gsap.timeline({
 .fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 2.05)
 .fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 2.2);
 
+// ====== WeChat QR modal ======
+(function () {
+    const link = document.getElementById('wechatLink');
+    const modal = document.getElementById('wechatModal');
+    if (!link || !modal) return;
+
+    const open = (e) => {
+        e.preventDefault();
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+    };
+
+    link.addEventListener('click', open);
+    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (!modal.hidden && e.key === 'Escape') close(); });
+})();
+
 // ====== Waitlist form ======
 (function () {
     const input = document.getElementById('waitlistContact');

@@ -572,3 +572,73 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* WeChat QR modal */
+.wechat-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: wechatFadeIn 0.2s ease-out;
+}
+.wechat-modal[hidden] {
+    display: none;
+}
+.wechat-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+}
+.wechat-modal-card {
+    position: relative;
+    background: #fff;
+    color: #111;
+    border-radius: 14px;
+    padding: 2rem 2rem 1.5rem;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-width: 90vw;
+}
+.wechat-modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    background: transparent;
+    border: 0;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+.wechat-modal-close:hover { color: #111; }
+.wechat-modal-qr {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    background: #f2f2f2;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+.wechat-modal-qr.missing {
+    position: relative;
+    background:
+      repeating-linear-gradient(45deg, #eee 0 10px, #f6f6f6 10px 20px);
+}
+.wechat-modal-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+@keyframes wechatFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
