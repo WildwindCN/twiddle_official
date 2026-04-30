@@ -178,21 +178,31 @@ engineSection.style.cssText = 'height:0;padding:0;overflow:hidden;min-height:0;b
 gsap.set('#prototype > .container h2, #prototype > .container .section-desc, #prototype > .container .feature-item', { opacity: 1, y: 0 });
 
 // Animate prototype out and engine in within one pinned timeline
+// Phase A (0 → 1): scroll container vertically so all features become visible
+// Phase B (1 → end): original horizontal slide-out + engine slide-in
+const prototypeContainer = prototypeSection.querySelector('.container');
+const prototypeScrollDistance = () => {
+    if (!prototypeContainer) return 0;
+    return Math.max(0, prototypeContainer.scrollHeight - window.innerHeight + 40);
+};
+
 gsap.timeline({
     scrollTrigger: {
         trigger: '#prototype',
         start: 'top top',
-        end: '+=250%',
+        end: '+=400%',
         pin: true,
         scrub: true,
+        invalidateOnRefresh: true,
     }
 })
-.to('#prototype > .container > *', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' })
-.to('.prototype-img', { x: '50vw', ease: 'none' }, 0)
-.to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 0.25)
-.fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 0.25)
-.fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 0.25)
-.fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 0.4);
+.to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1 }, 0)
+.to('#prototype > .container > *', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1)
+.to('.prototype-img', { x: '50vw', ease: 'none' }, 1)
+.to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 1.25)
+.fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 1.25)
+.fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 1.25)
+.fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 1.4);
 
 // ====== Waitlist form ======
 (function () {
