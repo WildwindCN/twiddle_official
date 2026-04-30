@@ -518,6 +518,10 @@ h1, h2, h3, h4 {
     color: #ef4444;
 }
 
+.waitlist-msg.info {
+    color: #e0b341;
+}
+
 /* Footer */
 footer {
     padding: 3rem 2rem;

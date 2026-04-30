@@ -331,7 +331,21 @@ prototypeTl
             let data = {};
             try { data = await r.json(); } catch { /* ignore */ }
             if (!r.ok) throw new Error(data.error || `HTTP ${r.status}`);
-            showMsg(currentLang === 'zh' ? '已加入等待列表，感谢您的关注！' : 'You are on the waitlist. Thank you!', 'success');
+            if (data.duplicate) {
+                showMsg(
+                    currentLang === 'zh'
+                        ? '您已在等待列表中，无需重复提交。'
+                        : "You're already on the waitlist — no need to submit again.",
+                    'info'
+                );
+            } else {
+                showMsg(
+                    currentLang === 'zh'
+                        ? '已加入等待列表，感谢您的关注！'
+                        : 'You are on the waitlist. Thank you!',
+                    'success'
+                );
+            }
             input.value = '';
         } catch (e) {
             showMsg((currentLang === 'zh' ? '提交失败：' : 'Error: ') + e.message, 'error');
