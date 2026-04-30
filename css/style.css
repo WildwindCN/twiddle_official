@@ -860,3 +860,37 @@ html, body { overflow-x: hidden; }
 @supports (height: 100svh) {
     .hero { min-height: 100svh; }
 }
+
+/* ====== Mobile: restore engine section visibility ======
+   Root cause: on desktop, #engine.split-right has height:500px + black bg;
+   #engine itself is min-height:100vh + flex:center, which pushes text out of viewport
+   on short mobile heights. Also reset any residual inline styles from GSAP init that
+   could have been applied in rare race conditions. */
+@media (max-width: 768px) {
+    #engine {
+        min-height: auto;
+        padding: 4rem 1.25rem;
+        display: block;
+    }
+    #engine .container.split {
+        display: block;
+    }
+    #engine .split-right {
+        height: auto;
+        min-height: 260px;
+        background: transparent;
+        margin-top: 1.5rem;
+    }
+    #engine .split-right .split-product {
+        position: static;
+        transform: none;
+    }
+    /* 显式保证 engine 文字不受 overlay 时间轴的初始 opacity:0 影响 */
+    #engine .section-label,
+    #engine h2,
+    #engine .section-desc,
+    #engine .feature-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
