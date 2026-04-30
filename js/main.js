@@ -201,25 +201,33 @@ heroScrollTl
     );
 
 // ====== Prototype -> Engine transition (single pinned overlay) ======
+// 移动端(≤768px): 跳过 overlay+pin 机制,让 #prototype 和 #engine 恢复普通流式 section
+// 原因: overlay 用 position:absolute+inset:0+overflow:hidden,加 pin+scrub 吞手势,
+//       移动视口不够高时会把第 4 个 feature 截掉且无法滚动查看。
+const IS_MOBILE_ENGINE = window.matchMedia('(max-width: 768px)').matches;
+
 const engineSection = document.getElementById('engine');
 const engineContainer = engineSection.querySelector('.container.split');
 const prototypeSection = document.getElementById('prototype');
 
-// Create overlay inside prototype to hold engine content
-const engineOverlay = document.createElement('div');
-engineOverlay.className = 'engine-overlay';
-engineOverlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8rem 2rem;z-index:2;background:var(--bg-primary);opacity:0;pointer-events:none;';
+let engineOverlay = null;
+if (!IS_MOBILE_ENGINE) {
+    // Create overlay inside prototype to hold engine content
+    engineOverlay = document.createElement('div');
+    engineOverlay.className = 'engine-overlay';
+    engineOverlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8rem 2rem;z-index:2;background:var(--bg-primary);opacity:0;pointer-events:none;';
 
-// Move engine content into overlay
-if (engineContainer) {
-    engineOverlay.appendChild(engineContainer);
+    // Move engine content into overlay
+    if (engineContainer) {
+        engineOverlay.appendChild(engineContainer);
+    }
+    prototypeSection.style.position = 'relative';
+    prototypeSection.style.overflow = 'hidden';
+    prototypeSection.appendChild(engineOverlay);
+
+    // Hide the real engine section so it doesn't take up space or show duplicates
+    engineSection.style.cssText = 'height:0;padding:0;overflow:hidden;min-height:0;border:none;';
 }
-prototypeSection.style.position = 'relative';
-prototypeSection.style.overflow = 'hidden';
-prototypeSection.appendChild(engineOverlay);
-
-// Hide the real engine section so it doesn't take up space or show duplicates
-engineSection.style.cssText = 'height:0;padding:0;overflow:hidden;min-height:0;border:none;';
 
 // Ensure prototype content is visible (it has CSS scroll-reveal initial states)
 gsap.set('#prototype > .container h2, #prototype > .container .section-desc, #prototype > .container .feature-item', { opacity: 1, y: 0 });
@@ -234,28 +242,27 @@ const prototypeScrollDistance = () => {
     return Math.max(0, prototypeContainer.scrollHeight - window.innerHeight + window.innerHeight * 0.15);
 };
 
-const prototypeTl = gsap.timeline({
-    scrollTrigger: {
-        trigger: '#prototype',
-        start: 'top top',
-        end: '+=550%',
-        pin: true,
-        scrub: true,
-        invalidateOnRefresh: true,
-    }
-});
-prototypeTl
-// Phase A (0 → 1.5): 垂直推进,把所有 feature 依次滚入视口
-.to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1.5 }, 0)
-// Phase A.5: 停顿 0.3 让用户看清最后一屏 feature
-// Phase B (1.8 → end): 水平滑出 + engine 滑入
-// 排除 .prototype-img,避免与下一行对同一元素 x 的重复 tween 冲突产生瞬移
-.to('#prototype > .container > *:not(.prototype-img)', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1.8)
-.to('.prototype-img', { x: '50vw', opacity: 0, ease: 'none' }, 1.8)
-.to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 2.05)
-.fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 2.05)
-.fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 2.05)
-.fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 2.2);
+let prototypeTl = null;
+if (!IS_MOBILE_ENGINE) {
+    prototypeTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#prototype',
+            start: 'top top',
+            end: '+=550%',
+            pin: true,
+            scrub: true,
+            invalidateOnRefresh: true,
+        }
+    });
+    prototypeTl
+    .to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1.5 }, 0)
+    .to('#prototype > .container > *:not(.prototype-img)', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1.8)
+    .to('.prototype-img', { x: '50vw', opacity: 0, ease: 'none' }, 1.8)
+    .to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 2.05)
+    .fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 2.05)
+    .fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 2.05)
+    .fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 2.2);
+}
 
 // ====== WeChat QR modal ======
 (function () {
@@ -387,19 +394,15 @@ gsap.utils.toArray('.section').forEach((section) => {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
+            // 移动端: 没有 overlay/pin,走浏览器原生锚点即可
+            if (!prototypeTl || !prototypeTl.scrollTrigger) return;
+            const st = prototypeTl.scrollTrigger;
             if (href === '#engine') {
                 e.preventDefault();
-                const st = prototypeTl.scrollTrigger;
-                if (!st) return;
-                // engine overlay 在时间轴 progress ≈ 2.2 / (timeline total) 附近完全淡入
-                // 这里跳到 pin 段 85% 处,让用户直接看到 engine 内容
                 const target = st.start + (st.end - st.start) * 0.85;
                 window.scrollTo({ top: target, behavior: 'smooth' });
             } else if (href === '#prototype') {
                 e.preventDefault();
-                const st = prototypeTl.scrollTrigger;
-                if (!st) return;
-                // 跳到 pin 起点(Phase A 开始)
                 window.scrollTo({ top: st.start, behavior: 'smooth' });
             }
             // #release / #about / #hero 等用浏览器默认行为,无需拦截

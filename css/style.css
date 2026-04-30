@@ -716,3 +716,18 @@ footer {
     color: #fff;
     border-bottom-color: #fff;
 }
+
+/* ====== Mobile fix: engine overlay content was clipped (4th feature invisible) ====== */
+@media (max-width: 768px) {
+    .engine-overlay {
+        /* 覆盖 JS inline 的 align-items:center + padding:8rem 2rem */
+        align-items: flex-start !important;
+        padding: 5rem 1.25rem 3rem !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .engine-overlay .container.split {
+        width: 100%;
+    }
+}
