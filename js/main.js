@@ -30,6 +30,11 @@ const translations = {
         'about-title': 'About Twiddle AI',
         'about-desc': 'Twiddle AI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed Inspiration Engine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. Twiddle SEED is the physical embodiment of this vision: the world\'s first hardware synthesizer that lets you shape sound with nothing but words.',
         'contact': 'Contact',
+        'social-xhs': 'RedNote',
+        'social-wechat': 'WeChat',
+        'wechat-title': 'Follow Twiddle AI on WeChat',
+        'wechat-channel': 'Video Channel',
+        'wechat-official': 'Official Account',
     },
     zh: {
         'nav-release': '发布日期',
@@ -59,6 +64,11 @@ const translations = {
         'about-title': '关于 Twiddle AI',
         'about-desc': 'Twiddle AI 是一支由工程师与音乐人组成的团队，正在开创声音合成的新范式。我们自研的 Inspiration Engine 1.0 算法基于端到端 Transformer 架构，首次架起了自然语言与音乐表达之间的桥梁。Twiddle SEED 是这一愿景的物理化身：全球首台让你仅用文字塑造声音的硬件合成器。',
         'contact': '联系我们',
+        'social-xhs': '小红书',
+        'social-wechat': '微信',
+        'wechat-title': '微信扫码关注 Twiddle AI',
+        'wechat-channel': '视频号',
+        'wechat-official': '公众号',
     }
 };
 

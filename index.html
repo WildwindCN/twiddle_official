@@ -115,8 +115,8 @@
                 <a href="https://www.threads.com/@twiddle_seed" target="_blank" rel="noopener" data-social="threads">Threads</a>
                 <a href="https://www.instagram.com/twiddle_seed/" target="_blank" rel="noopener" data-social="instagram">Instagram</a>
                 <a href="https://b23.tv/0XAMPQU" target="_blank" rel="noopener" data-social="bilibili">Bilibili</a>
-                <a href="https://xhslink.com/m/6Jf6qh7Jq4c" target="_blank" rel="noopener" data-social="xiaohongshu">小红书</a>
-                <a href="#" rel="noopener" data-social="wechat" id="wechatLink">微信</a>
+                <a href="https://xhslink.com/m/6Jf6qh7Jq4c" target="_blank" rel="noopener" data-social="xiaohongshu" data-i18n="social-xhs">小红书</a>
+                <a href="#" rel="noopener" data-social="wechat" id="wechatLink" data-i18n="social-wechat">微信</a>
             </div>
         </div>
     </section>
@@ -125,9 +125,19 @@
         <div class="wechat-modal-backdrop" data-close></div>
         <div class="wechat-modal-card">
             <button class="wechat-modal-close" data-close aria-label="Close">&times;</button>
-            <img src="images/wechat-qr.png" alt="Twiddle AI WeChat QR" class="wechat-modal-qr"
-                 onerror="this.classList.add('missing'); this.alt='二维码待上传';">
-            <p class="wechat-modal-label">微信扫码关注 Twiddle AI</p>
+            <h3 class="wechat-modal-title" data-i18n="wechat-title">微信扫码关注 Twiddle AI</h3>
+            <div class="wechat-modal-qrs">
+                <div class="wechat-qr-item">
+                    <img src="images/wechat-channel-qr.jpeg" alt="Twiddle AI WeChat Channel QR" class="wechat-modal-qr"
+                         onerror="this.classList.add('missing'); this.alt='';">
+                    <p class="wechat-qr-label" data-i18n="wechat-channel">视频号</p>
+                </div>
+                <div class="wechat-qr-item">
+                    <img src="images/wechat-official-qr.png" alt="Twiddle AI WeChat Official Account QR" class="wechat-modal-qr"
+                         onerror="this.classList.add('missing'); this.alt='';">
+                    <p class="wechat-qr-label" data-i18n="wechat-official">公众号</p>
+                </div>
+            </div>
         </div>
     </div>
 
