@@ -764,3 +764,98 @@ footer {
         max-width: 360px;
     }
 }
+
+/* ================================================================
+   Mobile & tablet adaptations (added as one consolidated block)
+   ================================================================ */
+
+/* iOS: 输入框字号至少 16px 避免聚焦时自动放大整页 */
+.waitlist-input {
+    font-size: max(16px, 1rem);
+}
+
+/* Prevent horizontal overflow on narrow viewports */
+html, body { overflow-x: hidden; }
+.term-quote { overflow-wrap: anywhere; }
+
+/* ---- Tablet (769px - 1024px, 主要针对 iPad 竖屏) ---- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .section { padding: 5rem 2rem; }
+    .section h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+    .section-desc { font-size: 1.02rem; }
+    .container { max-width: 95%; }
+    .feature-grid { gap: 1.5rem; }
+}
+
+/* ---- Phone (<=768px) extensions on top of existing rule ---- */
+@media (max-width: 768px) {
+    /* 重建可用的移动端导航:logo 居中,右侧语言切换.省略 nav links */
+    .navbar {
+        padding: 0.9rem 1.25rem;
+    }
+    .nav-logo img { height: 26px; }
+
+    /* Hero: 字号 & 间距 */
+    .hero-pretitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+    }
+    .hero-title { margin-top: 1.25rem; }
+    .hero-title h1 { font-size: clamp(2rem, 9vw, 3rem); }
+    .hero-subtitle { font-size: 0.95rem; margin-top: 0.8rem; }
+
+    /* Section typography */
+    .section { padding: 4rem 1.25rem; }
+    .section h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 1rem; }
+    .section-desc { font-size: 0.98rem; margin-bottom: 2rem; }
+    .section-label { font-size: 0.7rem; }
+
+    /* Release: waitlist input full width, button full width below */
+    .waitlist-inputs {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+        max-width: 360px;
+    }
+    .waitlist-input { width: 100%; box-sizing: border-box; }
+    .waitlist-inputs .cta-button { width: 100%; }
+
+    /* About: reduce visual gif size, stacks already handled by .about-grid */
+    .about-visual-img { max-width: 280px; }
+
+    /* Social links row wrap */
+    .social-links {
+        flex-wrap: wrap;
+        gap: 1rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    /* Footer breathing */
+    footer { padding: 2rem 1.25rem; font-size: 0.8rem; text-align: center; }
+
+    /* Prevent term-quote cursor from breaking on its own line awkwardly */
+    .term-quote::after {
+        width: 0.45em;
+        height: 0.9em;
+    }
+}
+
+/* ---- Narrow phone (≤420px) ---- */
+@media (max-width: 420px) {
+    .hero-title h1 { font-size: 1.9rem; }
+    .section h2 { font-size: 1.5rem; }
+    .section-desc { font-size: 0.92rem; }
+    .about-visual-img { max-width: 240px; }
+    .wechat-modal-card { padding: 1.75rem 1.25rem 1.25rem; }
+}
+
+/* ---- Landscape phone: hero 不要霸屏 ---- */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+    .hero { min-height: auto; padding: 4rem 1rem; }
+    .hero-product-wrapper { max-width: 60%; margin: 0 auto; }
+}
+
+/* ---- Avoid iOS 100vh jump on hero ---- */
+@supports (height: 100svh) {
+    .hero { min-height: 100svh; }
+}
