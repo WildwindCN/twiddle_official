@@ -65,58 +65,100 @@ export const onRequestOptions = async () =>
   });
 
 // ====== Resend integration ======
+const LOGO_URL = 'https://www.twiddle-ai.com/images/logo_v2_trans_black.png';
+const SITE_URL = 'https://www.twiddle-ai.com';
+
 const MAIL_TEMPLATES = {
     en: {
-        subject: 'Welcome to the Twiddle SEED Waitlist',
-        text: (addr) =>
-`Hi there,
+        subject: "You're on the Twiddle SEED waitlist",
+        text: () =>
+`Hi,
 
-Thanks for joining the Twiddle SEED waitlist — we're glad to have you along for the ride.
+Thank you for joining the Twiddle SEED waitlist.
 
-Twiddle SEED is the world's first hardware synthesizer with natural language timbre generation. We're hard at work crafting it, and you'll be among the first to hear when we have news worth sharing: prototype milestones, release dates, early-access opportunities.
+We're building a new kind of AI instrument: a natural-language-driven AI synthesizer that turns the sound in your mind into something you can play.
 
-If you have thoughts, questions, or just want to say hi, reply to this email — it lands directly in our inbox.
+Our goal is to make sound creation feel more natural — describe an idea, a feeling, or a sound, and bring it to your fingertips.
 
-— The Twiddle AI team
-contact@twiddle-ai.com
+We're glad to have you with us at this early stage.
 
-(You are receiving this email because ${addr} was submitted to our waitlist at twiddle-official.pages.dev. If this wasn't you, you can safely ignore this message.)
+We'll keep you updated on Twiddle SEED's progress, including product updates, testing opportunities, launch plans, and early access availability.
+
+Thank you for your interest, patience, and support.
+Stay tuned.
+
+Twiddle AI Team
+www.twiddle-ai.com
 `,
-        html: (addr) => `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;line-height:1.7;color:#222;max-width:560px;">
-<p>Hi there,</p>
-<p>Thanks for joining the <strong>Twiddle SEED</strong> waitlist — we're glad to have you along for the ride.</p>
-<p>Twiddle SEED is the world's first hardware synthesizer with natural language timbre generation. We're hard at work crafting it, and you'll be among the first to hear when we have news worth sharing: prototype milestones, release dates, early-access opportunities.</p>
-<p>If you have thoughts, questions, or just want to say hi, reply to this email — it lands directly in our inbox.</p>
-<p style="margin-top:2em;">— The Twiddle AI team<br><a href="mailto:contact@twiddle-ai.com" style="color:#0066cc;">contact@twiddle-ai.com</a></p>
-<hr style="border:none;border-top:1px solid #eee;margin:2em 0;">
-<p style="font-size:12px;color:#888;">You are receiving this email because <strong>${addr}</strong> was submitted to our waitlist at twiddle-official.pages.dev. If this wasn't you, you can safely ignore this message.</p>
-</div>`,
+        html: () => `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#f5f5f5;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:32px 12px;">
+  <tr><td align="center">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:8px;overflow:hidden;">
+      <tr><td style="padding:32px 40px 16px;background:#ffffff;text-align:left;">
+        <a href="${SITE_URL}" style="display:inline-block;text-decoration:none;">
+          <img src="${LOGO_URL}" alt="Twiddle AI" width="120" style="display:block;border:0;outline:none;max-width:120px;height:auto;">
+        </a>
+      </td></tr>
+      <tr><td style="padding:8px 40px 40px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#222;">
+        <h1 style="margin:16px 0 24px;font-size:22px;font-weight:700;color:#111;line-height:1.35;">You're on the Twiddle SEED waitlist</h1>
+        <p style="margin:0 0 1em;">Hi,</p>
+        <p style="margin:0 0 1em;">Thank you for joining the Twiddle SEED waitlist.</p>
+        <p style="margin:0 0 1em;">We're building a new kind of AI instrument: a natural-language-driven AI synthesizer that turns the sound in your mind into something you can play.</p>
+        <p style="margin:0 0 1em;">Our goal is to make sound creation feel more natural — describe an idea, a feeling, or a sound, and bring it to your fingertips.</p>
+        <p style="margin:0 0 1em;">We're glad to have you with us at this early stage.</p>
+        <p style="margin:0 0 1em;">We'll keep you updated on Twiddle SEED's progress, including product updates, testing opportunities, launch plans, and early access availability.</p>
+        <p style="margin:0 0 1em;">Thank you for your interest, patience, and support.<br>Stay tuned.</p>
+        <p style="margin:2em 0 0;">Twiddle AI Team<br><a href="${SITE_URL}" style="color:#0066cc;text-decoration:none;">www.twiddle-ai.com</a></p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>`,
     },
     zh: {
-        subject: '欢迎加入 Twiddle SEED 等待列表',
-        text: (addr) =>
-`您好,
+        subject: '感谢你加入 Twiddle SEED 等待名单',
+        text: () =>
+`感谢你加入 Twiddle SEED 的等待名单。
 
-感谢您加入 Twiddle SEED 等待列表,我们很高兴能与您同行。
+我们正在创造一件全新的AI乐器:一台由自然语言驱动的 AI合成器。
+它可以让你用一句话描述脑海中的声音,并将这种想象转化为可以被亲手演奏的音色。
 
-Twiddle SEED 是全球首台支持自然语言音色生成的硬件合成器。我们正在全力打磨它——原型进展、发布时间、早期体验机会等消息,您都将是第一批知晓的人。
+我们希望它不仅是一件工具,更是一种新的创作入口,让灵感更快抵达指尖。
 
-如有任何想法或问题,请直接回复本邮件,会发送到我们的收件箱。
+很高兴能在这个早期阶段与你相遇。
 
-— Twiddle AI 团队
-contact@twiddle-ai.com
+未来,Twiddle SEED 的每一次重要进展,包括产品更新、测试机会、发布计划和体验资格,我们都会第一时间通过邮件与你分享。
 
-(您收到本邮件是因为 ${addr} 通过 twiddle-official.pages.dev 加入了我们的等待列表。如非本人操作,忽略即可。)
+感谢你的关注、耐心与支持。
+请持续关注我们的最新进展。
+
+Twiddle Team
+www.twiddle-ai.com
 `,
-        html: (addr) => `<div style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;line-height:1.8;color:#222;max-width:560px;">
-<p>您好,</p>
-<p>感谢您加入 <strong>Twiddle SEED</strong> 等待列表,我们很高兴能与您同行。</p>
-<p>Twiddle SEED 是全球首台支持自然语言音色生成的硬件合成器。我们正在全力打磨它——原型进展、发布时间、早期体验机会等消息,您都将是第一批知晓的人。</p>
-<p>如有任何想法或问题,请直接回复本邮件,会发送到我们的收件箱。</p>
-<p style="margin-top:2em;">— Twiddle AI 团队<br><a href="mailto:contact@twiddle-ai.com" style="color:#0066cc;">contact@twiddle-ai.com</a></p>
-<hr style="border:none;border-top:1px solid #eee;margin:2em 0;">
-<p style="font-size:12px;color:#888;">您收到本邮件是因为 <strong>${addr}</strong> 通过 twiddle-official.pages.dev 加入了我们的等待列表。如非本人操作,忽略即可。</p>
-</div>`,
+        html: () => `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#f5f5f5;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:32px 12px;">
+  <tr><td align="center">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:8px;overflow:hidden;">
+      <tr><td style="padding:32px 40px 16px;background:#ffffff;text-align:left;">
+        <a href="${SITE_URL}" style="display:inline-block;text-decoration:none;">
+          <img src="${LOGO_URL}" alt="Twiddle AI" width="120" style="display:block;border:0;outline:none;max-width:120px;height:auto;">
+        </a>
+      </td></tr>
+      <tr><td style="padding:8px 40px 40px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:15px;line-height:1.85;color:#222;">
+        <h1 style="margin:16px 0 24px;font-size:22px;font-weight:700;color:#111;line-height:1.4;">感谢你加入 Twiddle SEED 等待名单</h1>
+        <p style="margin:0 0 1em;">感谢你加入 Twiddle SEED 的等待名单。</p>
+        <p style="margin:0 0 1em;">我们正在创造一件全新的 AI 乐器:一台由自然语言驱动的 AI 合成器。它可以让你用一句话描述脑海中的声音,并将这种想象转化为可以被亲手演奏的音色。我们希望它不仅是一件工具,更是一种新的创作入口,让灵感更快抵达指尖。</p>
+        <p style="margin:0 0 1em;">很高兴能在这个早期阶段与你相遇。</p>
+        <p style="margin:0 0 1em;">未来,Twiddle SEED 的每一次重要进展,包括产品更新、测试机会、发布计划和体验资格,我们都会第一时间通过邮件与你分享。</p>
+        <p style="margin:0 0 1em;">感谢你的关注、耐心与支持。<br>请持续关注我们的最新进展。</p>
+        <p style="margin:2em 0 0;">Twiddle Team<br><a href="${SITE_URL}" style="color:#0066cc;text-decoration:none;">www.twiddle-ai.com</a></p>
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body></html>`,
     },
 };
 
@@ -131,7 +173,7 @@ async function sendWelcomeEmail(env, to, lang) {
         from,
         to: [to],
         subject: tpl.subject,
-        text: tpl.text(to),
+        text: tpl.text(to),   // 模板目前未使用 addr,保留参数兼容未来扩展
         html: tpl.html(to),
     };
     try {
