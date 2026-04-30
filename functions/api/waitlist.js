@@ -252,12 +252,23 @@ export const onRequestPost = async (context) => {
     const id = `${ts}-${Math.random().toString(36).slice(2, 8)}`;
     const entryKey = `waitlist:${id}`;
 
+    // Cloudflare 在 request.cf 里自带 GeoIP 信息,零延迟
+    const cf = request.cf || {};
+    const geo = {
+      country: cf.country || null,      // ISO alpha-2, e.g. "CN", "US"
+      region: cf.region || null,        // 省/州
+      city: cf.city || null,
+      timezone: cf.timezone || null,
+      continent: cf.continent || null,  // "AS", "NA", ...
+    };
+
     const entry = {
       id,
       contact: rawContact,
       type: isEmail(rawContact) ? 'email' : 'phone',
       ts,
       ip,
+      geo,
     };
 
     // Store both the entry and the dedup marker
