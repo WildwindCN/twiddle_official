@@ -201,8 +201,9 @@ gsap.timeline({
 .to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1.5 }, 0)
 // Phase A.5: 停顿 0.3 让用户看清最后一屏 feature
 // Phase B (1.8 → end): 水平滑出 + engine 滑入
-.to('#prototype > .container > *', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1.8)
-.to('.prototype-img', { x: '50vw', ease: 'none' }, 1.8)
+// 排除 .prototype-img,避免与下一行对同一元素 x 的重复 tween 冲突产生瞬移
+.to('#prototype > .container > *:not(.prototype-img)', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1.8)
+.to('.prototype-img', { x: '50vw', opacity: 0, ease: 'none' }, 1.8)
 .to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 2.05)
 .fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 2.05)
 .fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 2.05)
