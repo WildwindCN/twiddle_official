@@ -7,16 +7,16 @@ const translations = {
         'nav-about': 'About',
         'hero-pretitle': 'TWIDDLE-AI PRESENTS',
         'hero-subtitle': "World's First Hardware Synthesizer with Natural Language Timbre Control",
-        'prototype-title': 'TwiddleSEED',
-        'prototype-desc': "TwiddleSEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by TwiddleAI's self-developed InspirationEngine 1.0, it bridges the gap between words and sound — turning text into playable timbres through an integrated display and responsive MIDI keyboard.",
+        'prototype-title': 'Twiddle SEED',
+        'prototype-desc': "Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by TwiddleAI's self-developed Inspiration Engine 1.0, it bridges the gap between words and sound — turning text into playable timbres through an integrated display and responsive MIDI keyboard.",
         'feature-allinone': 'Natural Language Timbre Control',
         'feature-allinone-desc': 'Describe any sound in words and hear it instantly. From technical specifications to poetic metaphors, your language becomes your instrument.',
         'feature-feedback': 'Integrated Display \u0026 Keyboard',
         'feature-feedback-desc': 'A high-resolution screen meets a responsive MIDI keyboard, giving you direct visual and tactile control over every parameter.',
         'feature-portable': 'Portable Creative Hub',
         'feature-portable-desc': 'A compact, all-in-one form factor designed for studios, stages, and everywhere inspiration strikes.',
-        'engine-title': 'InspirationEngine 1.0',
-        'engine-desc': 'Built on a Transformer architecture, InspirationEngine 1.0 is TwiddleAI\'s end-to-end natural language-to-timbre synthesis algorithm. It translates text into playable sound — from precise professional descriptors like "a bright, gritty, spacious vintage piano" to the poetic inspiration of "I wandered lonely as a cloud / That floats on high o\'er vales and hills." This is not preset browsing. It is timbre creation born from language.',
+        'engine-title': 'Inspiration Engine 1.0',
+        'engine-desc': 'Built on a Transformer architecture, Inspiration Engine 1.0 is TwiddleAI\'s end-to-end natural language-to-timbre synthesis algorithm. It translates text into playable sound — from precise professional descriptors like "a bright, gritty, spacious vintage piano" to the poetic inspiration of "I wandered lonely as a cloud / That floats on high o\'er vales and hills." This is not preset browsing. It is timbre creation born from language.',
         'feature-context': 'End-to-End Transformer',
         'feature-context-desc': 'A self-developed neural network that understands both technical sound-design vocabulary and the emotional nuance of free-form language.',
         'feature-style': 'Dual-Mode Language Understanding',
@@ -24,11 +24,11 @@ const translations = {
         'feature-collab': 'Real-Time Timbre Synthesis',
         'feature-collab-desc': 'Generate expressive, playable timbres instantaneously. No sampling libraries. No parameter knobs. Just words, transformed into sound.',
         'feature-voice': 'Voice-Guided Incremental Editing',
-        'feature-voice-desc': 'Tell TwiddleSEED "make it brighter" or "add more warmth" — the algorithm interprets your voice and refines the timbre in real time, one instruction at a time.',
-        'release-desc': 'TwiddleSEED is currently in prototype phase. The product form you see here does not represent the final design — we are actively exploring new interaction paradigms to dissolve the boundary between human and music creation.\u003cbr\u003eThe official release is expected in 2027.\u003cbr\u003eJoin the waitlist to follow our journey.',
+        'feature-voice-desc': 'Tell Twiddle SEED "make it brighter" or "add more warmth" — the algorithm interprets your voice and refines the timbre in real time, one instruction at a time.',
+        'release-desc': 'Twiddle SEED is currently in prototype phase. The product form you see here does not represent the final design — we are actively exploring new interaction paradigms to dissolve the boundary between human and music creation.\u003cbr\u003eThe official release is expected in 2027.\u003cbr\u003eJoin the waitlist to follow our journey.',
         'cta-waitlist': 'Join Waitlist',
         'about-title': 'About TwiddleAI',
-        'about-desc': 'TwiddleAI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed InspirationEngine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. TwiddleSEED is the physical embodiment of this vision: the world\'s first hardware synthesizer that lets you shape sound with nothing but words.',
+        'about-desc': 'TwiddleAI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed Inspiration Engine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. Twiddle SEED is the physical embodiment of this vision: the world\'s first hardware synthesizer that lets you shape sound with nothing but words.',
         'contact': 'Contact',
     },
     zh: {
@@ -36,16 +36,16 @@ const translations = {
         'nav-about': '关于我们',
         'hero-pretitle': 'TWIDDLE-AI 出品',
         'hero-subtitle': '全球首台支持自然语言音色控制的硬件合成器',
-        'prototype-title': 'TwiddleSEED',
-        'prototype-desc': 'TwiddleSEED 是全球首台支持自然语言音色控制的硬件合成器。作为 TwiddleAI 自研 InspirationEngine 1.0 的首款原型机，它架起了文字与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将文本转化为可演奏的音色。',
+        'prototype-title': 'Twiddle SEED',
+        'prototype-desc': 'Twiddle SEED 是全球首台支持自然语言音色控制的硬件合成器。作为 TwiddleAI 自研 Inspiration Engine 1.0 的首款原型机，它架起了文字与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将文本转化为可演奏的音色。',
         'feature-allinone': '自然语言音色控制',
         'feature-allinone-desc': '用文字描述任意声音，即刻听见。从技术参数到诗意隐喻，你的语言就是你的乐器。',
         'feature-feedback': '集成显示屏与键盘',
         'feature-feedback-desc': '高分辨率屏幕配合响应式 MIDI 键盘，为每个参数提供直观的视觉与触觉控制。',
         'feature-portable': '便携式创作中心',
         'feature-portable-desc': '紧凑的一体化设计，适用于录音室、舞台，以及一切灵感迸发的场景。',
-        'engine-title': 'InspirationEngine 1.0',
-        'engine-desc': 'InspirationEngine 1.0 基于 Transformer 架构，是 TwiddleAI 自研的端到端自然语言到音色合成算法。它将文本转化为可演奏的声音——既能解析精确的专业描述，如"明亮的有颗粒感的强空间感的老式钢琴"，也能捕捉诗意灵感，如"I wandered lonely as a cloud / That floats on high o\'er vales and hills"。这不是预设浏览，而是诞生于语言的音色创造。',
+        'engine-title': 'Inspiration Engine 1.0',
+        'engine-desc': 'Inspiration Engine 1.0 基于 Transformer 架构，是 TwiddleAI 自研的端到端自然语言到音色合成算法。它将文本转化为可演奏的声音——既能解析精确的专业描述，如"明亮的有颗粒感的强空间感的老式钢琴"，也能捕捉诗意灵感，如"I wandered lonely as a cloud / That floats on high o\'er vales and hills"。这不是预设浏览，而是诞生于语言的音色创造。',
         'feature-context': '端到端 Transformer',
         'feature-context-desc': '自研神经网络，既能理解专业声音设计词汇，也能捕捉自由语言中的情感细腻。',
         'feature-style': '双模式语言理解',
@@ -53,11 +53,11 @@ const translations = {
         'feature-collab': '实时音色合成',
         'feature-collab-desc': '即时生成富有表现力的可演奏音色。无需采样库，无需参数旋钮。只需文字，化为声音。',
         'feature-voice': '语音增量编辑',
-        'feature-voice-desc': '告诉 TwiddleSEED"让声音更明亮一点"或"增加一些温暖感"——算法会即时理解你的指令，一步一步精细化音色。',
-        'release-desc': 'TwiddleSEED 目前处于原型阶段。您所见的产品形态不代表最终设计——我们正在积极探索全新的交互范式，以消融人与音乐创作之间的边界。\u003cbr\u003e正式版本预计于 2027 年发布。\u003cbr\u003e加入等待列表，见证这段旅程。',
+        'feature-voice-desc': '告诉 Twiddle SEED"让声音更明亮一点"或"增加一些温暖感"——算法会即时理解你的指令，一步一步精细化音色。',
+        'release-desc': 'Twiddle SEED 目前处于原型阶段。您所见的产品形态不代表最终设计——我们正在积极探索全新的交互范式，以消融人与音乐创作之间的边界。\u003cbr\u003e正式版本预计于 2027 年发布。\u003cbr\u003e加入等待列表，见证这段旅程。',
         'cta-waitlist': '加入等待列表',
         'about-title': '关于 TwiddleAI',
-        'about-desc': 'TwiddleAI 是一支由工程师与音乐人组成的团队，正在开创声音合成的新范式。我们自研的 InspirationEngine 1.0 算法基于端到端 Transformer 架构，首次架起了自然语言与音乐表达之间的桥梁。TwiddleSEED 是这一愿景的物理化身：全球首台让你仅用文字塑造声音的硬件合成器。',
+        'about-desc': 'TwiddleAI 是一支由工程师与音乐人组成的团队，正在开创声音合成的新范式。我们自研的 Inspiration Engine 1.0 算法基于端到端 Transformer 架构，首次架起了自然语言与音乐表达之间的桥梁。Twiddle SEED 是这一愿景的物理化身：全球首台让你仅用文字塑造声音的硬件合成器。',
         'contact': '联系我们',
     }
 };
@@ -183,26 +183,30 @@ gsap.set('#prototype > .container h2, #prototype > .container .section-desc, #pr
 const prototypeContainer = prototypeSection.querySelector('.container');
 const prototypeScrollDistance = () => {
     if (!prototypeContainer) return 0;
-    return Math.max(0, prototypeContainer.scrollHeight - window.innerHeight + 40);
+    // 额外 padding 保证最后一个 feature 完整进入视口,再给一点底部留白
+    return Math.max(0, prototypeContainer.scrollHeight - window.innerHeight + window.innerHeight * 0.15);
 };
 
 gsap.timeline({
     scrollTrigger: {
         trigger: '#prototype',
         start: 'top top',
-        end: '+=400%',
+        end: '+=550%',
         pin: true,
         scrub: true,
         invalidateOnRefresh: true,
     }
 })
-.to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1 }, 0)
-.to('#prototype > .container > *', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1)
-.to('.prototype-img', { x: '50vw', ease: 'none' }, 1)
-.to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 1.25)
-.fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 1.25)
-.fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 1.25)
-.fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 1.4);
+// Phase A (0 → 1.5): 垂直推进,把所有 feature 依次滚入视口
+.to('#prototype > .container', { y: () => -prototypeScrollDistance(), ease: 'none', duration: 1.5 }, 0)
+// Phase A.5: 停顿 0.3 让用户看清最后一屏 feature
+// Phase B (1.8 → end): 水平滑出 + engine 滑入
+.to('#prototype > .container > *', { x: '-30vw', opacity: 0, stagger: 0.05, ease: 'none' }, 1.8)
+.to('.prototype-img', { x: '50vw', ease: 'none' }, 1.8)
+.to('.engine-overlay', { opacity: 1, pointerEvents: 'auto', ease: 'none' }, 2.05)
+.fromTo('.engine-overlay .split-left', { x: '-30vw' }, { x: 0, ease: 'none' }, 2.05)
+.fromTo('.engine-overlay .split-right', { x: '50vw' }, { x: 0, ease: 'none' }, 2.05)
+.fromTo('.engine-overlay .section-label, .engine-overlay h2, .engine-overlay .section-desc, .engine-overlay .feature-item', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, ease: 'none' }, 2.2);
 
 // ====== Waitlist form ======
 (function () {
