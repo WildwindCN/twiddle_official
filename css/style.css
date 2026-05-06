@@ -251,6 +251,10 @@ h1, h2, h3, h4 {
     font-weight: 400;
 }
 
+.hero-cta {
+    margin-top: 2rem;
+}
+
 /* Sections */
 .section {
     padding: 8rem 2rem;
@@ -538,7 +542,7 @@ footer {
 .feature-item,
 .algo-visual,
 .release-date,
-.cta-button,
+.waitlist-form .cta-button,
 .social-links {
     opacity: 0;
     transform: translateY(40px);

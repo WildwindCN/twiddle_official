@@ -7,6 +7,7 @@ const translations = {
         'nav-about': 'About',
         'hero-pretitle': '',
         'hero-subtitle': "World's First Hardware Synthesizer with Natural Language Timbre Generation",
+        'hero-cta-waitlist': 'Join Waitlist',
         'prototype-title': 'Twiddle SEED',
         'prototype-desc': "Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by Twiddle AI's self-developed Inspiration Engine 1.0, it bridges the gap between natural language input and sound — turning natural language input into playable timbres through an integrated display and responsive MIDI keyboard.",
         'feature-allinone': 'Natural Language Timbre Generation',
@@ -43,6 +44,7 @@ const translations = {
         'nav-about': '关于我们',
         'hero-pretitle': '',
         'hero-subtitle': '全球首台支持自然语言音色生成的硬件合成器',
+        'hero-cta-waitlist': '加入等待列表',
         'prototype-title': 'Twiddle SEED',
         'prototype-desc': 'Twiddle SEED 是全球首台支持自然语言音色生成的硬件合成器。作为 Twiddle AI 自研 Inspiration Engine 1.0 的首款原型机，它架起了自然语言输入与声音之间的桥梁——通过集成显示屏与响应式 MIDI 键盘，将自然语言输入转化为可演奏的音色。',
         'feature-allinone': '自然语言音色生成',
@@ -161,7 +163,8 @@ window.addEventListener('scroll', () => {
 const heroTl = gsap.timeline();
 heroTl
     .to('.hero-pretitle', { opacity: 1, duration: 0.8, ease: 'power2.out' })
-    .to('.hero-title', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5');
+    .to('.hero-title', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+    .to('.hero-cta', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.4');
 
 // ====== Hero pinned scroll animation ======
 const heroScrollTl = gsap.timeline({
@@ -194,6 +197,7 @@ heroScrollTl
     // 用 fromTo 明确起始值,避免 scrub 反向时因入场动画未完成导致"回去没文字"
     .fromTo('.hero-pretitle', { opacity: 1, y: 0 }, { opacity: 0, y: -30, ease: 'none' }, 0.1)
     .fromTo('.hero-title', { opacity: 1, y: 0 }, { opacity: 0, y: -50, ease: 'none' }, 0.15)
+    .fromTo('.hero-cta', { opacity: 1, y: 0 }, { opacity: 0, y: -40, ease: 'none' }, 0.2)
     .fromTo('.hero-dark-overlay',
         { opacity: 0 },
         { opacity: 1, ease: 'none', duration: 0.25 },
