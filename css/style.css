@@ -20,7 +20,7 @@ html {
 }
 
 body {
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
@@ -28,7 +28,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-weight: 700;
 }
 
@@ -139,7 +139,7 @@ h1, h2, h3, h4 {
     background: none;
     border: 1px solid var(--text-dark-secondary);
     color: var(--text-dark);
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 0.85rem;
     font-weight: 700;
     padding: 0.35rem 0.7rem;
@@ -186,7 +186,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-pretitle {
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -327,7 +327,7 @@ h1, h2, h3, h4 {
 
 .section-label {
     display: block;
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 0.75rem;
     letter-spacing: 0.15em;
     color: var(--accent);
@@ -435,7 +435,7 @@ h1, h2, h3, h4 {
     background: var(--accent);
     color: #fff;
     text-decoration: none;
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-weight: 700;
     border-radius: 4px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -487,7 +487,7 @@ h1, h2, h3, h4 {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     color: var(--text-primary);
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 0.9rem;
     transition: border-color 0.2s ease, background 0.2s ease;
     outline: none;
@@ -614,7 +614,7 @@ footer {
     max-width: 92vw;
 }
 .wechat-modal-title {
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.05em;
@@ -634,7 +634,7 @@ footer {
     gap: 0.6rem;
 }
 .wechat-qr-label {
-    font-family: 'Space Mono', monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-size: 0.85rem;
     color: #555;
     margin: 0;
@@ -679,7 +679,7 @@ footer {
 /* ====== Terminal-style quote (bold + blinking block cursor) ====== */
 .term-quote {
     font-weight: 700;
-    font-family: 'Space Mono', ui-monospace, Menlo, Consolas, monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     /* 光标紧跟引号末尾,放在 ::after 里 */
 }
 .term-quote::after {
@@ -709,7 +709,7 @@ footer {
 .about-contact-email {
     display: inline-block;
     margin-left: 0.4em;
-    font-family: 'Space Mono', ui-monospace, Menlo, Consolas, monospace;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
