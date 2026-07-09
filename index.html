@@ -42,7 +42,10 @@
         <div class="hero-pretitle" data-i18n="hero-pretitle" aria-hidden="true"></div>
         <div class="hero-product-wrapper">
             <div class="hero-product-glow"></div>
-            <img src="images/seed_new.png" alt="Twiddle SEED" class="hero-product">
+            <picture>
+                <source srcset="images/seed_new.webp" type="image/webp">
+                <img src="images/seed_new.png" alt="Twiddle SEED" class="hero-product" width="854" height="640" decoding="async">
+            </picture>
         </div>
         <div class="hero-title">
             <h1>Twiddle SEED</h1>
@@ -58,7 +61,10 @@
             <span class="section-label">01 / Twiddle SEED</span>
             <h2 data-i18n="prototype-title">Prototype</h2>
             <p class="section-desc" data-i18n="prototype-desc">Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by Twiddle AI's self-developed Inspiration Engine 1.0, it bridges the gap between natural language input and sound — turning natural language input into playable timbres through an integrated display and responsive MIDI keyboard.</p>
-            <img src="images/seed_ui.png" alt="Twiddle SEED with UI" class="prototype-img">
+            <picture>
+                <source srcset="images/seed_ui.webp" type="image/webp">
+                <img src="images/seed_ui.png" alt="Twiddle SEED with UI" class="prototype-img" width="1280" height="720" loading="lazy" decoding="async">
+            </picture>
             <div class="feature-grid">
                 <div class="feature-item">
                     <h4 data-i18n="feature-allinone">Natural Language Timbre Generation</h4>
@@ -102,7 +108,10 @@
                 </div>
             </div>
             <div class="split-right">
-                <img src="images/seed_ui.png" alt="Twiddle SEED UI" class="split-product">
+                <picture>
+                    <source srcset="images/seed_ui.webp" type="image/webp">
+                    <img src="images/seed_ui.png" alt="Twiddle SEED UI" class="split-product" width="1280" height="720" loading="lazy" decoding="async">
+                </picture>
             </div>
         </div>
     </section>
@@ -142,7 +151,11 @@
                 </div>
             </div>
             <div class="about-visual">
-                <img src="images/turnaround.gif" alt="Twiddle SEED turnaround" class="about-visual-img" loading="lazy">
+                <video class="about-visual-img" autoplay muted loop playsinline preload="metadata"
+                       poster="images/turnaround-poster.jpg" width="854" height="640" aria-label="Twiddle SEED turnaround">
+                    <source src="images/turnaround.webm" type="video/webm">
+                    <source src="images/turnaround.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </section>
