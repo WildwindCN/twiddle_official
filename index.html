@@ -20,13 +20,22 @@
     <meta property="og:image" content="/favicon/icon-512.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <!-- Preload the LCP candidate (hero product image) so the browser starts
+         fetching it before CSS is parsed. -->
+    <link rel="preload" as="image" href="images/seed_new.webp" type="image/webp">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-logo">
-            <img src="images/logo_v2_trans_black.png" alt="Twiddle AI" class="logo-black">
-            <img src="images/logo_v2_trans_white.png" alt="Twiddle AI" class="logo-white">
+            <picture>
+                <source srcset="images/logo_v2_trans_black.webp" type="image/webp">
+                <img src="images/logo_v2_trans_black.png" alt="Twiddle AI" class="logo-black" decoding="async">
+            </picture>
+            <picture>
+                <source srcset="images/logo_v2_trans_white.webp" type="image/webp">
+                <img src="images/logo_v2_trans_white.png" alt="Twiddle AI" class="logo-white" decoding="async">
+            </picture>
         </div>
         <div class="nav-links">
             <a href="#prototype">Twiddle SEED</a>
@@ -171,11 +180,13 @@
                          onerror="this.classList.add('missing'); this.alt='';">
                     <p class="wechat-qr-label" data-i18n="wechat-channel">视频号</p>
                 </div>
+                <!-- 公众号 QR 暂时没有素材, 留出 wechat-qr-item 节点等用户后续 push assets/images/wechat-official-qr.png 后回填
                 <div class="wechat-qr-item">
                     <img src="images/wechat-official-qr.png" alt="Twiddle AI WeChat Official Account QR" class="wechat-modal-qr"
                          onerror="this.classList.add('missing'); this.alt='';">
                     <p class="wechat-qr-label" data-i18n="wechat-official">公众号</p>
                 </div>
+                -->
             </div>
         </div>
     </div>
