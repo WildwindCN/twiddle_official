@@ -18,6 +18,9 @@ pnpm-lock.yaml
 .env.*
 !.env.example
 
+# ECS 部署运行时 (服务器在 /opt/twiddle_official/data/ 维护, 不进 git)
+data/
+
 # Editor / OS
 .vscode/
 .idea/
