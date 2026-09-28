@@ -1,561 +1,202 @@
-<!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Twiddle — 让灵感发声</title>
-    <meta
-      name="description"
-      content="Twiddle 创造连接语言、声音与演奏的乐器。探索 Twiddle SEED，自然语言驱动的 AI 合成器原型。"
-    />
-    <meta name="theme-color" content="#f4f2eb" />
-    <meta property="og:title" content="Twiddle — Make room for play." />
-    <meta
-      property="og:description"
-      content="Meet SEED. An instrument for the sounds in your head."
-    />
-    <meta property="og:image" content="/images/seed_ui.png" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-    <link rel="preload" as="image" href="/images/seed_ui.webp" />
-    <link rel="stylesheet" href="/css/style.css?v=20260928" />
-    <script src="/js/site-config.js?v=20260928" defer></script>
-    <script src="/js/main.js?v=20260928" defer></script>
-  </head>
-  <body>
-    <a data-zh="跳转至正文" data-en="Skip to content" href="#main" class="skip"
-      >跳转至正文</a
-    >
-    <header class="header">
-      <a class="logo" href="#" aria-label="Twiddle"
-        ><img
-          src="/images/logo_v2_trans_black.webp"
-          width="160"
-          height="74"
-          alt="Twiddle"
-      /></a>
-      <nav aria-label="Main">
-        <a data-zh="产品" data-en="SEED" href="#prototype">产品</a
-        ><a data-zh="灵感引擎" data-en="The idea" href="#engine">灵感引擎</a
-        ><a data-zh="关于我们" data-en="About" href="#about">关于我们</a
-        ><a data-zh="支持" data-en="Support" href="#support">支持</a>
-      </nav>
-      <div class="header-actions">
-        <button id="langSwitch" class="lang" aria-label="Switch to English">
-          EN</button
-        ><a data-zh="商店 ↗" data-en="Shop ↗" href="#shop" class="nav-shop"
-          >商店 ↗</a
-        >
-      </div>
-    </header>
-    <main id="main">
-      <section class="hero">
-        <div class="hero-top">
-          <span class="eyebrow"
-            ><i class="dot"></i> INSTRUMENTS FOR THE IMAGINATION</span
-          ><span class="edition mono">TWIDDLE / 001</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twiddle SEED — World's First Hardware Synthesizer with Natural Language Timbre Generation</title>
+    <!-- Favicon / app icons -->
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/icon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon/icon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/icon-512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <meta name="theme-color" content="#0a0a0a">
+    <!-- Social / Open Graph preview -->
+    <meta property="og:title" content="Twiddle SEED">
+    <meta property="og:description" content="World's First Hardware Synthesizer with Natural Language Timbre Generation">
+    <meta property="og:image" content="/favicon/icon-512.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Preload the LCP candidate (hero product image) so the browser starts
+         fetching it before CSS is parsed. -->
+    <link rel="preload" as="image" href="images/seed_new.webp" type="image/webp">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <picture>
+                <source srcset="images/logo_v2_trans_black.webp" type="image/webp">
+                <img src="images/logo_v2_trans_black.png" alt="Twiddle AI" class="logo-black" decoding="async">
+            </picture>
+            <picture>
+                <source srcset="images/logo_v2_trans_white.webp" type="image/webp">
+                <img src="images/logo_v2_trans_white.png" alt="Twiddle AI" class="logo-white" decoding="async">
+            </picture>
         </div>
-        <div class="hero-copy">
-          <h1>
-            <span data-zh="让灵感" data-en="Make room">让灵感</span><br /><span
-              data-zh="发声。"
-              data-en="for play."
-              class="accent"
-              >发声。</span
-            >
-          </h1>
-          <div class="hero-aside">
-            <p
-              data-zh="脑海里的声音，
-值得被亲手奏响。"
-              data-en="The sound in your head
-deserves to be played."
-              class="intro"
-            >
-              脑海里的声音， 值得被亲手奏响。
-            </p>
-            <p
-              data-zh="我们在创造一种新的乐器体验。
-从一句描述开始，让声音回到指尖。"
-              data-en="A new way into making music.
-Start with a thought. Find it at your fingertips."
-              class="muted"
-            >
-              我们在创造一种新的乐器体验。 从一句描述开始，让声音回到指尖。
-            </p>
-            <a
-              data-zh="认识 SEED ↗"
-              data-en="Meet SEED ↗"
-              class="button"
-              href="#prototype"
-              >认识 SEED ↗</a
-            >
-          </div>
+        <div class="nav-links">
+            <a href="#prototype">Twiddle SEED</a>
+            <a href="#engine">Inspiration Engine 1.0</a>
+            <a href="#release" data-i18n="nav-release">Release</a>
+            <a href="#about" data-i18n="nav-about">About</a>
         </div>
-        <div class="hero-object">
-          <div class="orbit" aria-hidden="true"></div>
-          <span class="object-note mono"
-            >A THOUGHT.<br />A SOUND.<br />YOUR HANDS.</span
-          ><img
-            src="/images/seed_ui.webp"
-            width="1440"
-            height="411"
-            alt="Twiddle SEED synthesizer prototype"
-            fetchpriority="high"
-          />
-          <div class="object-caption">
-            <span class="mono">SEED / 01</span
-            ><span
-              data-zh="自然语言驱动的 AI 合成器 · 原型展示"
-              data-en="Natural language, meet the synthesizer. · Prototype"
-              >自然语言驱动的 AI 合成器 · 原型展示</span
-            ><a href="#prototype" aria-label="Explore SEED">↓</a>
-          </div>
+        <button class="lang-switch" id="langSwitch" aria-label="Switch Language">中</button>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-dark-overlay"></div>
+        <div class="hero-pretitle" data-i18n="hero-pretitle" aria-hidden="true"></div>
+        <div class="hero-product-wrapper">
+            <div class="hero-product-glow"></div>
+            <picture>
+                <source srcset="images/seed_new.webp" type="image/webp">
+                <img src="images/seed_new.png" alt="Twiddle SEED" class="hero-product" decoding="async">
+            </picture>
         </div>
-      </section>
-      <div class="ribbon" aria-hidden="true">
-        <span>LESS MENU. MORE MUSIC.</span><span>✳</span
-        ><span>MAKE SOMETHING YOURS.</span><span>✳</span
-        ><span>TWIDDLE A LITTLE.</span>
-      </div>
-      <section id="prototype" class="section product">
-        <div class="section-heading">
-          <span class="eyebrow">01 / MEET YOUR INSTRUMENT</span>
-          <h2
-            data-zh="从一个念头，
-到一段旋律。"
-            data-en="From a little thought.
-To a world of sound."
-          >
-            从一个念头， 到一段旋律。
-          </h2>
-        </div>
-        <div class="product-grid">
-          <div class="product-image">
-            <span class="pill">TWIDDLE SEED</span
-            ><img
-              src="/images/seed_new.webp"
-              width="1905"
-              height="547"
-              loading="lazy"
-              alt="Twiddle SEED keyboard and integrated display"
-            /><span class="mono image-caption">DESIGNED FOR EXPLORATION.</span>
-          </div>
-          <div class="product-copy">
-            <span class="eyebrow">THE FIRST SEED</span>
-            <h3>Small instrument.<br />Big imagination.</h3>
-            <p
-              data-zh="SEED 把自然语言、屏幕和键盘放在一起。描述脑海里的音色，探索它的可能，再用双手把它变成音乐。"
-              data-en="SEED brings language, a screen and a keyboard together. Describe a sound, explore its possibilities, and make it music with your own hands."
-            >
-              SEED
-              把自然语言、屏幕和键盘放在一起。描述脑海里的音色，探索它的可能，再用双手把它变成音乐。
-            </p>
-            <dl>
-              <div>
-                <dt>
-                  <span class="mono">01</span
-                  ><span data-zh="用语言找声音" data-en="Begin with words"
-                    >用语言找声音</span
-                  >
-                </dt>
-                <dd
-                  data-zh="从音色描述或一个意象出发。"
-                  data-en="Start with a timbre description or an image in your mind."
-                >
-                  从音色描述或一个意象出发。
-                </dd>
-              </div>
-              <div>
-                <dt>
-                  <span class="mono">02</span
-                  ><span
-                    data-zh="用双手接住灵感"
-                    data-en="Keep your hands in the music"
-                    >用双手接住灵感</span
-                  >
-                </dt>
-                <dd
-                  data-zh="屏幕与 MIDI 键盘，连接想象与演奏。"
-                  data-en="An integrated display and MIDI keyboard connect ideas to playing."
-                >
-                  屏幕与 MIDI 键盘，连接想象与演奏。
-                </dd>
-              </div>
-              <div>
-                <dt>
-                  <span class="mono">03</span
-                  ><span
-                    data-zh="留一点空间给意外"
-                    data-en="Leave room for discovery"
-                    >留一点空间给意外</span
-                  >
-                </dt>
-                <dd
-                  data-zh="让每一次探索，都有新的可能。"
-                  data-en="Make space for something you didn’t expect."
-                >
-                  让每一次探索，都有新的可能。
-                </dd>
-              </div>
-            </dl>
-            <p
-              data-zh="原型开发中，展示外观不代表最终量产设计。"
-              data-en="In development. Prototype appearance is not the final production design."
-              class="fine"
-            >
-              原型开发中，展示外观不代表最终量产设计。
-            </p>
-          </div>
-        </div>
-      </section>
-      <section class="engine section" id="engine">
-        <div class="engine-head">
-          <span class="eyebrow">02 / INSPIRATION ENGINE</span>
-          <h2
-            data-zh="声音的起点，
-也可以是一句话。"
-            data-en="A sound can start
-with a sentence."
-          >
-            声音的起点， 也可以是一句话。
-          </h2>
-        </div>
-        <div class="engine-grid">
-          <div>
-            <p class="engine-lead">
-              <span
-                data-zh="不必每次都从参数开始。"
-                data-en="Not every idea begins with a parameter."
-                >不必每次都从参数开始。</span
-              >
-            </p>
-            <p
-              data-zh="Twiddle 的 Inspiration Engine 探索自然语言与音色之间的连接。一个具体的描述，或一个说不清的画面，都可以成为创作的起点。"
-              data-en="Twiddle’s Inspiration Engine explores the connection between language and timbre. A precise description or a half-formed image can be the beginning of something musical."
-              class="muted"
-            >
-              Twiddle 的 Inspiration Engine
-              探索自然语言与音色之间的连接。一个具体的描述，或一个说不清的画面，都可以成为创作的起点。
-            </p>
-            <a class="text-link" href="#release"
-              ><span data-zh="关注开发进展 ↗" data-en="Follow the development ↗"
-                >关注开发进展 ↗</span
-              ></a
-            >
-          </div>
-          <div class="thought-card">
-            <div class="thought-label mono">
-              <i class="dot"></i> A LITTLE INSPIRATION
+        <div class="hero-title">
+            <h1>Twiddle SEED</h1>
+            <p class="hero-subtitle" data-i18n="hero-subtitle">World's First Hardware Synthesizer with Natural Language Timbre Generation</p>
+            <div class="hero-cta">
+                <a href="#release" class="cta-button" data-i18n="hero-cta-waitlist">Join Waitlist</a>
             </div>
-            <blockquote>
-              <span
-                data-zh="“像傍晚的阳光，
-温暖，带一点颗粒感。”"
-                data-en="“Warm like the evening sun.
-A little grain around the edges.”"
-                >“像傍晚的阳光， 温暖，带一点颗粒感。”</span
-              >
-            </blockquote>
-            <div class="wave" aria-hidden="true">
-              <i style="--h: 12%"></i><i style="--h: 49%"></i
-              ><i style="--h: 86%"></i><i style="--h: 40%"></i
-              ><i style="--h: 77%"></i><i style="--h: 31%"></i
-              ><i style="--h: 68%"></i><i style="--h: 22%"></i
-              ><i style="--h: 59%"></i><i style="--h: 13%"></i
-              ><i style="--h: 50%"></i><i style="--h: 87%"></i
-              ><i style="--h: 41%"></i><i style="--h: 78%"></i
-              ><i style="--h: 32%"></i><i style="--h: 69%"></i
-              ><i style="--h: 23%"></i><i style="--h: 60%"></i
-              ><i style="--h: 14%"></i><i style="--h: 51%"></i
-              ><i style="--h: 88%"></i><i style="--h: 42%"></i
-              ><i style="--h: 79%"></i><i style="--h: 33%"></i
-              ><i style="--h: 70%"></i><i style="--h: 24%"></i
-              ><i style="--h: 61%"></i><i style="--h: 15%"></i
-              ><i style="--h: 52%"></i><i style="--h: 89%"></i
-              ><i style="--h: 43%"></i><i style="--h: 80%"></i
-              ><i style="--h: 34%"></i><i style="--h: 71%"></i
-              ><i style="--h: 25%"></i><i style="--h: 62%"></i
-              ><i style="--h: 16%"></i><i style="--h: 53%"></i
-              ><i style="--h: 90%"></i><i style="--h: 44%"></i
-              ><i style="--h: 81%"></i><i style="--h: 35%"></i
-              ><i style="--h: 72%"></i><i style="--h: 26%"></i
-              ><i style="--h: 63%"></i><i style="--h: 17%"></i
-              ><i style="--h: 54%"></i><i style="--h: 91%"></i>
+        </div>
+    </section>
+
+    <section class="section prototype" id="prototype">
+        <div class="container">
+            <span class="section-label">01 / Twiddle SEED</span>
+            <h2 data-i18n="prototype-title">Prototype</h2>
+            <p class="section-desc" data-i18n="prototype-desc">Twiddle SEED is the world's first hardware synthesizer with natural language timbre control. As the debut prototype powered by Twiddle AI's self-developed Inspiration Engine 1.0, it bridges the gap between natural language input and sound — turning natural language input into playable timbres through an integrated display and responsive MIDI keyboard.</p>
+            <picture>
+                <source srcset="images/seed_ui.webp" type="image/webp">
+                <img src="images/seed_ui.png" alt="Twiddle SEED with UI" class="prototype-img" loading="lazy" decoding="async">
+            </picture>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4 data-i18n="feature-allinone">Natural Language Timbre Generation</h4>
+                    <p data-i18n="feature-allinone-desc">Describe any sound in words and hear it instantly. From technical specifications to poetic metaphors, your language becomes your instrument.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="feature-feedback">Integrated Display &amp; Keyboard</h4>
+                    <p data-i18n="feature-feedback-desc">A high-resolution screen meets a responsive MIDI keyboard, giving you direct visual and tactile control over every parameter.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="feature-portable">Portable Creative Hub</h4>
+                    <p data-i18n="feature-portable-desc">A compact, all-in-one form factor designed for studios, stages, and everywhere inspiration strikes.</p>
+                </div>
             </div>
-            <div class="thought-footer mono">WORDS → EXPLORATION → MUSIC</div>
-            <p
-              data-zh="创作描述示例 · 非实时生成演示"
-              data-en="An example creative prompt · Not a live generation demo"
-              class="fine"
-            >
-              创作描述示例 · 非实时生成演示
-            </p>
-          </div>
         </div>
-      </section>
-      <section id="about" class="section about">
-        <div>
-          <span class="eyebrow">03 / A LITTLE TWIDDLE</span>
-          <h2
-            data-zh="认真创造。
-尽情玩。"
-            data-en="Made with care.
-Played with curiosity."
-          >
-            认真创造。 尽情玩。
-          </h2>
-          <p
-            data-zh="我们是一群喜欢声音、乐器与新想法的人。相信技术最好的样子，是让人更自由地表达，而音乐里最有意思的部分，往往来自一次小小的尝试。"
-            data-en="We’re a team drawn to sounds, instruments and new ideas. We believe technology should make expression feel more natural. And the best part of music often starts with a little experiment."
-          >
-            我们是一群喜欢声音、乐器与新想法的人。相信技术最好的样子，是让人更自由地表达，而音乐里最有意思的部分，往往来自一次小小的尝试。
-          </p>
-          <a class="text-link" href="mailto:contact@twiddle-ai.com"
-            ><span data-zh="和我们聊聊 ↗" data-en="Say hello ↗"
-              >和我们聊聊 ↗</span
-            ></a
-          >
+    </section>
+
+    <section class="section engine" id="engine">
+        <div class="container split">
+            <div class="split-left">
+                <span class="section-label">02 / Inspiration Engine 1.0</span>
+                <h2 data-i18n="engine-title">Inspiration Engine 1.0</h2>
+                <p class="section-desc" data-i18n="engine-desc">Built on a Transformer architecture, Inspiration Engine 1.0 is Twiddle AI's end-to-end natural language-to-timbre synthesis algorithm. It translates natural language input into playable sound — from precise professional descriptors like <span class="term-quote">"a bright, gritty, spacious vintage piano"</span> to the poetic inspiration of <span class="term-quote">"I wandered lonely as a cloud / That floats on high o'er vales and hills."</span> This is not preset browsing. It is timbre creation born from language.</p>
+                <div class="feature-grid compact">
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-context">End-to-End Transformer</h4>
+                        <p data-i18n="feature-context-desc">A self-developed neural network that understands both technical sound-design vocabulary and the emotional nuance of free-form language.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-style">Dual-Mode Language Understanding</h4>
+                        <p data-i18n="feature-style-desc">Handles rigorous professional descriptors and open-ended creative metaphors with equal fluency, capturing both precision and inspiration.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-collab">Real-Time Timbre Synthesis</h4>
+                        <p data-i18n="feature-collab-desc">Generate expressive, playable timbres instantaneously. No sampling libraries. No parameter knobs. Just words, transformed into sound.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4 data-i18n="feature-voice">Voice-Guided Incremental Editing</h4>
+                        <p data-i18n="feature-voice-desc">Tell Twiddle SEED "make it brighter" or "add more warmth" — the algorithm interprets your voice and refines the timbre in real time, one instruction at a time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="split-right">
+                <picture>
+                    <source srcset="images/seed_ui.webp" type="image/webp">
+                    <img src="images/seed_ui.png" alt="Twiddle SEED UI" class="split-product" loading="lazy" decoding="async">
+                </picture>
+            </div>
         </div>
-        <figure class="mascot">
-          <img
-            src="/images/turnaround-poster.jpg"
-            width="854"
-            height="640"
-            loading="lazy"
-            alt="Twiddle blue mascot"
-          />
-          <figcaption class="mono">
-            A LITTLE CURIOUS. A LITTLE TWIDDLE.
-          </figcaption>
-        </figure>
-      </section>
-      <section class="section shop" id="shop">
-        <div class="section-heading">
-          <span class="eyebrow">04 / THE TWIDDLE SHOP</span>
-          <h2
-            data-zh="下一件乐器。
-也许是新的开始。"
-            data-en="Your next instrument.
-A new beginning."
-          >
-            下一件乐器。 也许是新的开始。
-          </h2>
+    </section>
+
+    <section class="section release" id="release">
+        <div class="container centered">
+            <span class="section-label">03 / Coming Soon</span>
+            <h2 class="release-date">2027</h2>
+            <p class="section-desc" data-i18n="release-desc">Twiddle SEED is currently in <strong>prototype phase. The product form you see here does not represent the final design</strong> — we are actively exploring new interaction paradigms to dissolve the boundary between human and music creation.<br>The official release is expected in 2027.<br>Join the waitlist to follow our journey.</p>
+            <div class="waitlist-form" id="waitlistForm">
+                <div class="waitlist-inputs">
+                    <input type="text" id="waitlistContact" class="waitlist-input" maxlength="128" placeholder="Email or Phone" autocomplete="off">
+                    <button type="button" id="waitlistSubmit" class="cta-button" data-i18n="cta-waitlist">Join Waitlist</button>
+                </div>
+                <div class="waitlist-msg" id="waitlistMsg"></div>
+            </div>
         </div>
-        <div class="shop-row">
-          <div>
-            <span class="pill">SEED</span>
-            <h3
-              data-zh="还在生长，敬请期待。"
-              data-en="Still growing. Stay close."
-            >
-              还在生长，敬请期待。
-            </h3>
-            <p
-              data-zh="SEED 目前处于原型开发阶段，尚未开放销售。加入候补名单，获取产品与发售信息。"
-              data-en="SEED is in prototype development and is not available to order yet. Join the waitlist for product and release news."
-            >
-              SEED
-              目前处于原型开发阶段，尚未开放销售。加入候补名单，获取产品与发售信息。
-            </p>
-          </div>
-          <div class="shop-actions">
-            <label class="mono" for="market"
-              ><span data-zh="选择地区" data-en="YOUR REGION"
-                >选择地区</span
-              ></label
-            ><select id="market">
-              <option value="cn">中国大陆 / Mainland China</option>
-              <option value="global">International / 国际</option></select
-            ><a id="shopLink" class="button" href="#release"
-              ><span data-zh="获取发售通知 ↗" data-en="Get release updates ↗"
-                >获取发售通知 ↗</span
-              ></a
-            >
-            <p class="fine" id="shopStatus">
-              <span data-zh="暂未开放购买" data-en="Not yet available to order"
-                >暂未开放购买</span
-              >
-            </p>
-          </div>
+    </section>
+
+    <section class="section about" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <span class="section-label">04 / About</span>
+                <h2 data-i18n="about-title">About Twiddle AI</h2>
+                <p class="section-desc" data-i18n="about-desc">Twiddle AI is a team of engineers and musicians pioneering a new paradigm in sound synthesis. Our self-developed Inspiration Engine 1.0 algorithm — built on an end-to-end Transformer architecture — bridges natural language and musical expression for the first time. Twiddle SEED is the physical embodiment of this vision: the world's first hardware synthesizer that lets you shape sound with nothing but words.</p>
+                <p class="about-contact">
+                    <span data-i18n="contact-intro">For business inquiries and collaboration, feel free to reach us at</span>
+                    <a href="mailto:contact@twiddle-ai.com" class="about-contact-email">contact@twiddle-ai.com</a>
+                </p>
+                <div class="social-links">
+                    <a href="https://www.threads.com/@twiddle_seed" target="_blank" rel="noopener" data-social="threads">Threads</a>
+                    <a href="https://www.instagram.com/twiddle_seed/" target="_blank" rel="noopener" data-social="instagram">Instagram</a>
+                    <a href="https://b23.tv/0XAMPQU" target="_blank" rel="noopener" data-social="bilibili">Bilibili</a>
+                    <a href="https://xhslink.com/m/6Jf6qh7Jq4c" target="_blank" rel="noopener" data-social="xiaohongshu" data-i18n="social-xhs">小红书</a>
+                    <a href="#" rel="noopener" data-social="wechat" id="wechatLink" data-i18n="social-wechat">微信</a>
+                    <a href="https://qr.twiddle-ai.com.cn/" target="_blank" rel="noopener" data-social="all-channels" data-i18n="social-all-channels">All Channels</a>
+                </div>
+            </div>
+            <div class="about-visual">
+                <video class="about-visual-img" autoplay muted loop playsinline preload="metadata"
+                       poster="images/turnaround-poster.jpg" width="854" height="640" aria-label="Twiddle SEED turnaround">
+                    <source src="images/turnaround.webm" type="video/webm">
+                    <source src="images/turnaround.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
-      </section>
-      <section id="support" class="section support">
-        <div>
-          <span class="eyebrow">05 / GOOD TO KNOW</span>
-          <h2 data-zh="好奇，就问。" data-en="A few good questions.">
-            好奇，就问。
-          </h2>
+    </section>
+
+    <div class="wechat-modal" id="wechatModal" hidden>
+        <div class="wechat-modal-backdrop" data-close></div>
+        <div class="wechat-modal-card">
+            <button class="wechat-modal-close" data-close aria-label="Close">&times;</button>
+            <h3 class="wechat-modal-title" data-i18n="wechat-title">微信扫码关注 Twiddle AI</h3>
+            <div class="wechat-modal-qrs">
+                <div class="wechat-qr-item">
+                    <img src="images/wechat-channel-qr.jpeg" alt="Twiddle AI WeChat Channel QR" class="wechat-modal-qr"
+                         onerror="this.classList.add('missing'); this.alt='';">
+                    <p class="wechat-qr-label" data-i18n="wechat-channel">视频号</p>
+                </div>
+                <!-- 公众号 QR 暂时没有素材, 留出 wechat-qr-item 节点等用户后续 push assets/images/wechat-official-qr.png 后回填
+                <div class="wechat-qr-item">
+                    <img src="images/wechat-official-qr.png" alt="Twiddle AI WeChat Official Account QR" class="wechat-modal-qr"
+                         onerror="this.classList.add('missing'); this.alt='';">
+                    <p class="wechat-qr-label" data-i18n="wechat-official">公众号</p>
+                </div>
+                -->
+            </div>
         </div>
-        <div class="faq">
-          <details>
-            <summary>
-              <span
-                data-zh="现在可以买到 SEED 吗？"
-                data-en="Can I buy SEED now?"
-                >现在可以买到 SEED 吗？</span
-              ><span aria-hidden="true">+</span>
-            </summary>
-            <p
-              data-zh="还不能。SEED 仍在原型开发阶段，价格、发售日期和最终规格将通过官方渠道公布。"
-              data-en="Not yet. SEED is in prototype development. Pricing, availability and final specifications will be announced through our official channels."
-            >
-              还不能。SEED
-              仍在原型开发阶段，价格、发售日期和最终规格将通过官方渠道公布。
-            </p>
-          </details>
-          <details>
-            <summary>
-              <span
-                data-zh="这里展示的是最终产品吗？"
-                data-en="Is this the final product design?"
-                >这里展示的是最终产品吗？</span
-              ><span aria-hidden="true">+</span>
-            </summary>
-            <p
-              data-zh="这里展示的是研发原型。外观、交互与功能仍在迭代，请以正式发布信息为准。"
-              data-en="The images show a development prototype. Appearance, interaction and features are evolving; refer to the official release for final details."
-            >
-              这里展示的是研发原型。外观、交互与功能仍在迭代，请以正式发布信息为准。
-            </p>
-          </details>
-          <details>
-            <summary>
-              <span
-                data-zh="如何联系合作或支持？"
-                data-en="How can I get in touch?"
-                >如何联系合作或支持？</span
-              ><span aria-hidden="true">+</span>
-            </summary>
-            <p
-              data-zh="请发邮件至 contact@twiddle-ai.com，告诉我们你的问题或合作想法。"
-              data-en="Email contact@twiddle-ai.com with your question or collaboration idea."
-            >
-              请发邮件至 contact@twiddle-ai.com，告诉我们你的问题或合作想法。
-            </p>
-          </details>
-        </div>
-      </section>
-      <section class="release section" id="release">
-        <span class="eyebrow">STAY IN THE LOOP</span>
-        <h2
-          data-zh="好声音，
-值得等一等。"
-          data-en="Good things
-are taking shape."
-        >
-          好声音， 值得等一等。
-        </h2>
-        <p
-          data-zh="留下邮箱，和我们一起看 SEED 生长。"
-          data-en="Leave your email. Watch SEED grow with us."
-        >
-          留下邮箱，和我们一起看 SEED 生长。
-        </p>
-        <form id="waitlistForm">
-          <label for="waitlistContact" class="sr-only"
-            ><span data-zh="邮箱地址" data-en="Email address"
-              >邮箱地址</span
-            ></label
-          >
-          <div class="input-row">
-            <input
-              id="waitlistContact"
-              name="email"
-              type="email"
-              autocomplete="email"
-              maxlength="128"
-              placeholder="you@example.com"
-              required
-            /><button class="button" type="submit" id="waitlistSubmit">
-              <span data-zh="加入候补名单 ↗" data-en="Join the waitlist ↗"
-                >加入候补名单 ↗</span
-              >
-            </button>
-          </div>
-          <label class="consent"
-            ><input type="checkbox" id="privacyConsent" required /><span
-              data-zh="我同意接收产品及发售信息，并已阅读"
-              data-en="I agree to receive product and release updates and have read the"
-              >我同意接收产品及发售信息，并已阅读</span
-            >
-            <button class="inline-link" type="button" data-dialog="privacy">
-              <span data-zh="隐私说明" data-en="privacy notice">隐私说明</span>
-            </button></label
-          >
-          <p id="waitlistMsg" role="status" aria-live="polite"></p>
-          <noscript
-            >请启用 JavaScript 提交，或邮件联系 contact@twiddle-ai.com。 /
-            Enable JavaScript or email us.</noscript
-          >
-        </form>
-      </section>
-    </main>
+    </div>
+
     <footer>
-      <div class="footer-top">
-        <a href="#" aria-label="Twiddle home"
-          ><img
-            src="/images/logo_v2_trans_white.webp"
-            width="180"
-            height="84"
-            alt="Twiddle"
-        /></a>
-        <p>MAKE ROOM<br />FOR PLAY.</p>
-        <div>
-          <a href="mailto:contact@twiddle-ai.com">contact@twiddle-ai.com ↗</a
-          ><a
-            href="https://qr.twiddle-ai.com.cn/"
-            target="_blank"
-            rel="noopener"
-            ><span data-zh="所有官方渠道 ↗" data-en="Find us elsewhere ↗"
-              >所有官方渠道 ↗</span
-            ></a
-          >
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Twiddle.</span>
-        <div>
-          <button data-dialog="privacy">
-            <span data-zh="隐私说明" data-en="Privacy">隐私说明</span></button
-          ><a href="#support"
-            ><span data-zh="支持" data-en="Support">支持</span></a
-          >
-        </div>
-        <span class="mono">A LITTLE TWIDDLE GOES A LONG WAY.</span>
-      </div>
-      <div id="filing" class="filing" hidden></div>
+        <p data-i18n="footer-tagline">World's First Hardware Synthesizer with Natural Language Timbre Generation : Twiddle SEED</p>
     </footer>
-    <dialog id="privacy" aria-labelledby="privacyTitle">
-      <div class="dialog-header">
-        <h2 data-zh="隐私说明" data-en="Privacy notice" id="privacyTitle">
-          隐私说明
-        </h2>
-        <button class="dialog-close" aria-label="Close / 关闭">×</button>
-      </div>
-      <p
-        data-zh="本表单收集你的邮箱地址，用于候补名单登记、确认邮件及产品与发售信息。服务还会使用请求 IP 做限流，国内服务可能保存浏览器信息以辅助维护。"
-        data-en="This form collects your email for the waitlist, confirmation email and product or release updates. The service also uses your request IP for rate limiting; the mainland service may store browser information for maintenance."
-      >
-        本表单收集你的邮箱地址，用于候补名单登记、确认邮件及产品与发售信息。服务还会使用请求
-        IP 做限流，国内服务可能保存浏览器信息以辅助维护。
-      </p>
-      <p
-        data-zh="国内站名单存储于国内服务器；国际站名单使用 Cloudflare 服务。确认邮件可能通过 Resend 发送，需要将邮箱地址交由该邮件服务处理。"
-        data-en="Mainland waitlist records are stored on a mainland server; the international site uses Cloudflare. Confirmation emails may be sent via Resend, which processes your email address to deliver them."
-      >
-        国内站名单存储于国内服务器；国际站名单使用 Cloudflare
-        服务。确认邮件可能通过 Resend 发送，需要将邮箱地址交由该邮件服务处理。
-      </p>
-      <p
-        data-zh="提交是自愿的，不构成购买、预订或付款。你可以随时通过 contact@twiddle-ai.com 要求停止联系或删除登记信息。"
-        data-en="Submitting is optional and is not a purchase, reservation or payment. Contact contact@twiddle-ai.com at any time to stop receiving updates or request deletion of your entry."
-      >
-        提交是自愿的，不构成购买、预订或付款。你可以随时通过
-        contact@twiddle-ai.com 要求停止联系或删除登记信息。
-      </p>
-    </dialog>
-  </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>

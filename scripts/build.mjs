@@ -21,6 +21,11 @@ for (const file of [
   "seed_ui.webp",
   "seed_ui.png",
   "turnaround-poster.jpg",
+  "logo_v2_trans_white.png",
+  "seed_new.png",
+  "turnaround.webm",
+  "turnaround.mp4",
+  "wechat-channel-qr.jpeg",
 ])
   await cp(path.join(root, "images", file), path.join(out, "images", file));
 console.log("Built public-only dist:", (await readdir(out)).join(", "));
