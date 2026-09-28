@@ -1,94 +1,53 @@
-# TwiddleSEED 官方站 — 部署说明 (ECS volce)
+# Deployment — Twiddle brand site
 
-主域 `twiddle-ai.com.cn`,直连阿里云火山引擎 ECS (`14.103.86.179`, SSH alias `gilmour`)。
-部署约定仿 latent-space 现在的 `ecs-volce` 模式(参考 `boss-pipeline/CLAUDE.md`):
+## Mainland
 
-- **GitHub = 中心**: `git@github.com:WildwindCN/twiddle_official.git`,所有 push 走这里
-- **Mac mirror**: `~/Developer/deployed-services/ecs-volce-14.103.86.179/twiddle_official/`
-- **ECS 部署点**: `14.103.86.179:/opt/twiddle_official`,也是 git 仓库;只 pull,不在服务器 commit
+- Origin: `https://github.com/WildwindCN/twiddle_official`
+- Local: `/Users/zhangjiangnan/Developer/deployed-services/ecs-volce-14.103.86.179/twiddle_official`
+- Server: SSH alias `gilmour`, `/opt/twiddle_official` (pull only).
+- Public root: `/opt/twiddle_official/dist`.
+- Nginx site: `/etc/nginx/sites-enabled/twiddle-ai.com.cn.conf`.
+- API: `twiddle-official-waitlist.service`, localhost:8791.
+- Private runtime data: `/opt/twiddle_official/data`; keep out of public root.
 
-## 服务组成
+Publish after local checks and pushing the intended commit:
 
-| 进程 | 端口 | 启动方式 | 角色 |
-|---|---|---|---|
-| nginx | 80/443 | systemd | HTTPS 终止 + 静态 + `/api/*` 反代 |
-| `twiddle-official-waitlist` | 127.0.0.1:8791 | systemd,Node stdlib | waitlist 收集 + Resend 邮件 |
-
-## 一次性安装 (服务器)
-
-```bash
-# 1. 拉代码
-ssh gilmour
-git clone git@github.com:WildwindCN/twiddle_official.git /opt/twiddle_official
-cd /opt/twiddle_official && git checkout main
-
-# 2. 准备 web 目录 (nginx 直接 serve 仓库根, 不需要单独 web/ 拷贝)
-#    index.html / css/ / js/ / images/ / favicon/ 都在仓库根,
-#    functions/ ecs-api/ deploy/ nginx/ DEPLOY.md .git/ 由 nginx deny 掉.
-
-# 3. 装 waitlist 后端
-cp ecs-api/.env.example /opt/twiddle_official/ecs-api/.env
-chmod 600 /opt/twiddle_official/ecs-api/.env
-$EDITOR /opt/twiddle_official/ecs-api/.env   # 填 RESEND_API_KEY
-mkdir -p /opt/twiddle_official/data && chmod 700 /opt/twiddle_official/data
-
-cp deploy/twiddle-official-waitlist.service /etc/systemd/system/
-systemctl daemon-reload
-systemctl enable --now twiddle-official-waitlist.service
-systemctl status twiddle-official-waitlist.service --no-pager
-curl http://127.0.0.1:8791/api/healthz   # → {"ok":true,...}
-
-# 4. nginx 站点配置
-cp nginx/twiddle-ai.com.cn.conf /etc/nginx/sites-enabled/
-nginx -t && systemctl reload nginx
-
-# 5. TLS 证书 (跟 qr / latentspace 共用 certbot dns-cloudflare 流程)
-apt install -y certbot python3-certbot-dns-cloudflare
-# /root/.secrets/cf.ini 已经存在 (qr 和 latentspace 在用)
-certbot certonly \
-  --dns-cloudflare \
-  --dns-cloudflare-credentials /root/.secrets/cf.ini \
-  --dns-cloudflare-propagation-seconds 35 \
-  -d twiddle-ai.com.cn -d www.twiddle-ai.com.cn \
-  --key-type ecdsa --agree-tos --non-interactive \
-  -m zhangjiangnan@shanda.com
-
-# 6. DNS A 记录 (在 Cloudflare DNS 面板, twiddle-ai.com.cn 这个 zone)
-#    twiddle-ai.com.cn        A    14.103.86.179   (灰色云, 不要开 proxy)
-#    www.twiddle-ai.com.cn    A    14.103.86.179
+```sh
+git pull --ff-only
+node scripts/build.mjs
+node --test tests/waitlist.test.mjs
+# Back up the active Nginx config before replacing it.
+cp nginx/twiddle-ai.com.cn.conf /etc/nginx/sites-enabled/twiddle-ai.com.cn.conf
+nginx -t
+systemctl restart twiddle-official-waitlist
+systemctl reload nginx
 ```
 
-## 日常更新
+Perform those server commands from `/opt/twiddle_official`. Do not copy any Flock or unrelated Nginx configuration. Verify public homepage, assets, language switch, API GET 405, and private paths 404. Do not POST test contacts to production.
 
-```bash
-# Mac mirror 改完代码后:
-git push origin main
+For routine future frontend changes, build to a staged release directory and switch the Nginx root/symlink atomically where feasible. This initial migration changes the old repository root to `dist` after the new files exist.
 
-# 服务器:
-ssh gilmour
-cd /opt/twiddle_official
-git pull
-systemctl reload twiddle-official-waitlist.service   # 如果 ecs-api 改了
-nginx -t && systemctl reload nginx                   # 如果 nginx 配置改了
-```
+## International
 
-## API 路由
+`www.twiddle-ai.com` points to `twiddle-official.pages.dev`.
+The old project cache references account `0f5dbbfffc7b283e85b922257f530398`. The currently authenticated JohnGoner account has no `twiddle-official` project; do not create a duplicate or overwrite other sites.
 
-- `POST /api/waitlist` body `{"contact": "user@example.com", "lang": "zh"}` →
-  `{ok, id, contact, duplicate?}`
-- `GET /api/waitlist` → 最近 20 条 (`{items: [{id, contact, type, ts, ua}]}`)
-- `GET /api/healthz` → 进程存活 + entries 数
-- `GET /api/lang` → 404 (ECS 无 GeoIP, 前端走 navigator.language 兜底)
+Once access to the actual project is available:
 
-## 跟 Cloudflare Pages 那一版的关系
+1. Confirm source repo, production branch and latest deployment; the historical local JohnGoner checkout does not match the served frontend.
+2. Preserve existing WAITLIST KV and RESEND_API_KEY / MAIL_FROM bindings. Never print secret values.
+3. Build `dist/` and deploy a preview of this source, with `functions/` from the repository root.
+4. Test method routing, privacy behavior, registration via an isolated preview KV, both locales and mobile view.
+5. Publish production and verify the www endpoint plus apex redirect.
 
-仓库里 `functions/api/*.js` 是早期 Cloudflare Pages 部署用的,继续保留用于回滚或
-Cloudflare Pages 重启。`ecs-api/server.mjs` 是 ECS 部署的官方实现,功能对齐
-(`isEmail` / `isPhone` / rate limit / dedupe / Resend 邮件模板与原版一致),
-只把 KV 换成 JSON 文件,GeoIP 检测(`/api/lang`)在 ECS 这边不接,前端会自动兜底。
+Use the same frontend source for both regions; no DNS changes are needed for this visual update.
 
-## 资源占用
+## Rollback
 
-- Node 进程:常驻 ~30 MB RSS(无 native 模块)
-- 磁盘:JSON 文件按 1000 条上限,几百 KB
-- ECS 总体 3.8 GB RAM / 4 CPU,本服务占不到 1%
+Before rollout record the server commit, back up the current public files and Nginx config under `/opt/twiddle-official-backups/<timestamp>`. For this rollout the previous server commit was `5690d2b`.
+
+Prefer rolling back frontend assets only; retain the new public-only root and write-only waitlist API. Restore the backed-up old public assets into a separate directory and point Nginx at that directory, then `nginx -t` and reload. Do not restore public contact-list access. Data and `.env` must never be overwritten by frontend recovery.
+
+## Pending business configuration
+
+Regional real stores, payment merchant accounts, SKUs, pricing, stock/preorder and shipping dates, actual filing records and responsible entity details are not invented by this rollout. Update content and `js/site-config.js` after verification.

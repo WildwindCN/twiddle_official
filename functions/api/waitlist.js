@@ -21,7 +21,7 @@ const json = (data, status = 200) =>
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
     },
   });
 
@@ -59,7 +59,7 @@ export const onRequestOptions = async () =>
     status: 204,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
   });
@@ -293,35 +293,5 @@ export const onRequestPost = async (context) => {
   }
 };
 
-export const onRequestGet = async ({ env }) => {
-  try {
-    ensureKV(env);
-
-    const { keys } = await env.WAITLIST.list({ prefix: 'waitlist:', limit: 100 });
-    // Filter out rate-limit keys and dedup keys
-    const entryKeys = keys.filter((k) =>
-      k.name.startsWith('waitlist:') &&
-      !k.name.startsWith('waitlist:contact:')
-    );
-
-    const recent = entryKeys.slice(-20);
-    const items = await Promise.all(
-      recent.map(async (k) => {
-        const raw = await env.WAITLIST.get(k.name);
-        try {
-          return JSON.parse(raw);
-        } catch {
-          return { key: k.name, contact: null, ts: 0 };
-        }
-      })
-    );
-
-    items.sort((a, b) => b.ts - a.ts);
-    return json({ items });
-  } catch (e) {
-    return json({ error: e?.message || String(e) }, 500);
-  }
-};
-
-export const onRequest = async () =>
-  json({ error: 'Method not allowed' }, 405);
+// Waitlist collection is write-only. Do not expose contacts through the website.
+export const onRequestGet = async () => json({ error: 'Method not allowed' }, 405);

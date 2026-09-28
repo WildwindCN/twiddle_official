@@ -3,14 +3,14 @@
 // Replaces the Cloudflare Pages Function `functions/api/waitlist.js` for the
 // ECS static deploy. Same behavior contract (validate → sanitize → rate limit
 // per IP → dedupe → store → Resend welcome email) and a parallel
-// `GET /api/waitlist` admin reader, but persistence is a single JSON file
+// disabled `GET /api/waitlist` reader, but persistence is a single JSON file
 // (no KV) and the runtime is node:http with zero npm dependencies.
 //
 // Endpoints
 //   GET  /api/healthz      → 200 ok
 //   GET  /api/lang         → 404 (frontend falls through to navigator.language;
 //                                  ECS 没有 CF 的 GeoIP, 装 GeoLite 太重)
-//   GET  /api/waitlist     → last 20 entries
+//   GET  /api/waitlist     → 405 (write-only collection)
 //   POST /api/waitlist     → { contact: string, lang?: 'zh'|'en' }
 //                           returns { ok, id?, contact, duplicate? }
 //   *    anything else     → 405 / 404
@@ -110,11 +110,7 @@ function rateCheck(ip) {
 
 // ── Client IP ───────────────────────────────────────────────────────────
 function getClientIP(req) {
-    // nginx 把真实客户端 IP 放进 X-Forwarded-For / X-Real-IP
-    const xff = req.headers['x-forwarded-for'];
-    if (typeof xff === 'string' && xff.length) {
-        return xff.split(',')[0].trim();
-    }
+    // Nginx overwrites X-Real-IP; never trust the client-controlled first XFF item.
     const xr = req.headers['x-real-ip'];
     if (typeof xr === 'string' && xr.length) return xr.trim();
     return req.socket?.remoteAddress || 'unknown';
@@ -251,7 +247,7 @@ async function sendWelcomeEmail(to, lang) {
 // ── HTTP helpers ────────────────────────────────────────────────────────
 const CORS = {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
 };
 const json = (res, status, data) => {
@@ -278,7 +274,7 @@ async function readJsonBody(req, maxBytes = 8 * 1024) {
 
 // ── Handlers ────────────────────────────────────────────────────────────
 async function handleHealth(_req, res) {
-    json(res, 200, { ok: true, ts: Date.now(), entries: store.entries.length });
+    json(res, 200, { ok: true, ts: Date.now(), service: 'waitlist' });
 }
 
 async function handleLang(_req, res) {
@@ -287,10 +283,9 @@ async function handleLang(_req, res) {
     json(res, 404, { error: 'lang detection disabled on ECS deploy' });
 }
 
-async function handleGetList(_req, res) {
-    await loadOnce();
-    const items = store.entries.slice().sort((a, b) => b.ts - a.ts).slice(0, 20);
-    json(res, 200, { items });
+function handleGetList(_req, res) {
+    // Public collection is write-only. Customer records stay server-side.
+    return json(res, 405, { error: 'Method not allowed' });
 }
 
 async function handlePostWaitlist(req, res) {

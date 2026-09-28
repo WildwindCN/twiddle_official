@@ -29,3 +29,8 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Generated public output and browser verification
+dist/
+output/
+.playwright-cli/

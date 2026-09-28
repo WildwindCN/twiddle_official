@@ -1,83 +1,41 @@
-# TwiddleSEED Official Website
+# Twiddle official website
 
-TwiddleSEED — World's First Hardware Synthesizer with Natural Language Timbre Control.
+Bilingual brand site, SEED prototype presentation, regional store entry points and a write-only waitlist.
 
-- **Frontend**: Static HTML/CSS/JS single-page site (`index.html`, `css/`, `js/`, `images/`)
-- **Backend**: Cloudflare Pages Functions (`functions/api/waitlist.js`)
-- **Storage**: Cloudflare Workers KV (waitlist entries)
+## Develop and verify
 
-## Features
+Requires Node.js 18+ and Python 3 for the optional static preview.
 
-- Bilingual (EN / ZH) support with language switch
-- GSAP + ScrollTrigger scroll-driven animations
-- Waitlist form with email / phone input
-- Input validation, sanitization, rate limiting, and duplicate detection
-
-## Directory Structure
-
-```
-├── index.html               # Main landing page
-├── css/
-│   └── style.css            # Styles
-├── js/
-│   └── main.js              # Animations + waitlist form logic
-├── images/                  # Product images and logos
-├── functions/
-│   └── api/
-│       └── waitlist.js      # POST / GET waitlist API
-└── README.md
+```sh
+node scripts/build.mjs
+python3 -m http.server 8765 --bind 127.0.0.1 --directory dist
+node --test tests/waitlist.test.mjs
 ```
 
-## Local Development
+The static preview has no registration API. Use mocked browser responses for UI tests; never send test registrations to production.
 
-```bash
-npm i -g wrangler
+- `index.html`: accessible, bilingual content (`data-zh` / `data-en`).
+- `css/style.css`: responsive layout, locally hosted Space Mono, reduced-motion support.
+- `js/main.js`: locale, region, form and dialog behavior.
+- `js/site-config.js`: public store and official filing settings; no secrets.
+- `scripts/build.mjs`: public asset allowlist, producing ignored `dist/`.
+- `ecs-api/server.mjs`: mainland Node API, existing private JSON storage preserved.
+- `functions/api/`: Cloudflare Pages API with existing KV integration.
 
-# Start local dev server with KV emulation
-wrangler pages dev . --kv WAITLIST
-```
+Production must serve/upload `dist/`, never the repository root. Keep `functions/` at the project root when deploying Pages.
 
-Open http://localhost:8788 .
+## Commerce
 
-## Deploy to Cloudflare Pages
+Both regional store links are disabled until real storefronts and checkout are verified. They lead to the waitlist while disabled. Before enabling a region in `js/site-config.js`, also update launch status, product copy and FAQ to match real pricing, availability, shipping and returns. This repository is the brand frontend, not a transaction or inventory system.
 
-1. **Push to GitHub**
+Populate filing numbers and official query links only after checking actual records. Mainland filing display is hostname-scoped. Default language is Chinese on mainland and local hosts, English internationally; a saved language preference takes precedence.
 
-   ```bash
-   git add .
-   git commit -m "feat: TwiddleSEED website with waitlist"
-   git push origin main
-   ```
+## Waitlist
 
-2. **Create KV Namespace**
+- `POST /api/waitlist`: `{contact, lang}`; validates, rate-limits, deduplicates and registers.
+- `GET /api/waitlist`: always 405; no public customer-list endpoint.
+- Mainland `GET /api/healthz`: service status, no customer counts.
 
-   Cloudflare Dashboard → Workers & Pages → KV → Create a namespace → name it `waitlist-prod`.
+Email provider secrets stay in existing server/Pages environment settings. The frontend requires explicit privacy consent. An actual shop, payments and filing submission remain separate rollout steps.
 
-3. **Create Pages Project**
-
-   Workers & Pages → Create → Pages → Connect to Git → select this repository.
-
-   Build settings (no build step):
-   - Build command: *(leave empty)*
-   - Build output directory: `/` *(or leave empty)*
-
-4. **Bind KV to Pages Project**
-
-   Project → Settings → Functions → **KV namespace bindings** → Add binding
-   - Variable name: `WAITLIST` (must match `env.WAITLIST` in the code)
-   - KV namespace: `waitlist-prod`
-
-   Add it for both Production and Preview environments.
-
-5. **Redeploy**
-
-   Deployments → Retry deployment so the KV binding takes effect.
-
-## API
-
-- `POST /api/waitlist`  body: `{"contact": "user@example.com"}` → `{ok, id, contact}`
-  - Validates email or phone number
-  - Sanitizes input (strips HTML tags, trims, max 128 chars)
-  - Rate-limits to 5 requests per minute per IP
-  - Deduplicates by normalized contact
-- `GET /api/waitlist` → `{items: [{id, contact, type, ts}, ...]}` (last 20 entries)
+See [DEPLOY.md](DEPLOY.md) for publishing and recovery.
